@@ -102,8 +102,10 @@
 
       typeset -Ag abbreviations
       abbreviations=(
-        "ns"  "sudo nixos-rebuild switch --flake ~/nixos-config"
-        "com" "git add . && git commit -m"
+        "ns"   "sudo nixos-rebuild switch --flake ~/nixos-config"
+        "com"  "git add . && git commit -m"
+        "po"   "git push origin"
+        "push" "git push"
       )
       function expand_abbreviation() {
         local MATCH
