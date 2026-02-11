@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   programs.home-manager.enable = true;
@@ -6,9 +6,13 @@
   home.username = "kanarus";
   home.homeDirectory = "/home/kanarus";
   home.stateVersion = "25.11";
+  home.packages = [
+    inputs.ghostty.packages.${pkgs.system}.default
+  ];
 
   programs.zsh = import ./zsh;
   programs.helix = import ./helix;
+  # programs.ghostty = import ./ghostty;
 
   wayland.windowManager.hyprland = {
     enable = true;

@@ -97,7 +97,7 @@
   environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
 
   environment.systemPackages = [
-    specialArgs.inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default
+    # specialArgs.inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default
     pkgs.curl
     pkgs.wget
   ];
