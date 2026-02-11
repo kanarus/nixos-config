@@ -7,9 +7,7 @@
   home.homeDirectory = "/home/kanarus";
   home.stateVersion = "25.11";
 
-  imports = [
-    ./shell.nix
-  ];
+  programs.zsh = import ./zsh;
 
   wayland.windowManager.hyprland = {
     enable = true;
