@@ -8,7 +8,7 @@ function git_status_color() {
   if [ -z $git_status_output ]; then
     echo '157'
   else
-    echo '125'
+    echo '197'
   fi
 }
 function maybe_git_branch() {
