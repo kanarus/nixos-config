@@ -10,10 +10,15 @@
     inputs.ghostty.packages.${pkgs.system}.default
   ];
 
+  programs.niri = import ./niri;
   programs.zsh = import ./zsh;
   programs.helix = import ./helix;
-  # programs.ghostty = import ./ghostty;
 
+  home.file = {
+    "${config.xdg.configHome}/ghostty/config" = builtins.readFile ./ghostty/config;
+    "${config.xdg.configHome}/niri/config.kdl" = builtins.readFile ./niri/config.kdl;
+  };
+  
   wayland.windowManager.hyprland = {
     enable = true;
 
