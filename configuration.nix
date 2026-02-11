@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, specialArgs, ... }:
 
 {
   imports = [ # Include the results of the hardware scan.
@@ -96,10 +96,10 @@
 
   environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
 
-  environment.systemPackages = with pkgs; [
-#    git
-    curl
-    wget
+  environment.systemPackages = [
+    specialArgs.inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default
+    pkgs.curl
+    pkgs.wget
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [

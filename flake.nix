@@ -6,9 +6,13 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    ghostty = {
+      url = "github:ghostty-org/ghostty";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, ghostty, home-manager, ... }@inputs:
     let
       system = "x86_64-linux";
     in {
@@ -20,7 +24,7 @@
 
           modules = [
             ./configuration.nix
-            
+
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
