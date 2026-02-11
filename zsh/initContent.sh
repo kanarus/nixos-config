@@ -3,12 +3,20 @@ setopt INTERACTIVE_COMMENTS
 bindkey ";5C" forward-word
 bindkey ";5D" backward-word
 
+function git_status_color() {
+  git_status_output=$(git status --short)
+  if [ -z $git_status_output ]; then
+    echo '119'
+  else
+    echo '124'
+  fi
+}
 function maybe_git_branch() {
   git_output=$(git symbolic-ref --short HEAD 2>&1)
   if [[ $git_output =~ '^fatal: ' ]]; then
-    echo ""
+    echo ''
   else
-    echo '(%F{124}'$git_output'%F{153})'
+    echo '(%F{'$(git_status_color)'}'$git_output'%F{153})'
   fi
 }
 setopt PROMPT_SUBST
