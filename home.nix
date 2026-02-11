@@ -8,6 +8,7 @@
   home.stateVersion = "25.11";
 
   programs.zsh = import ./zsh;
+  programs.helix = import ./helix;
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -68,20 +69,7 @@
         "$mod, mouse:273, resizewindow"
       ];
     };
-  };
-  
-  programs.helix = {
-    enable = true;
-    settings = {
-      theme = "sonokai";
-      editor = {
-        cursor-shape = {
-          normal = "block";
-          insert = "bar";
-        };
-      };
-    };
-  };
+  };  
 
   programs.alacritty = {
     enable = true;
