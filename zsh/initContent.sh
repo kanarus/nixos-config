@@ -6,7 +6,7 @@ bindkey ";5D" backward-word
 function git_status_color() {
   git_status_output=$(git status --short)
   if [ -z $git_status_output ]; then
-    echo '122'
+    echo '154'
   else
     echo '125'
   fi
