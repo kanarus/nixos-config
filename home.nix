@@ -71,7 +71,7 @@
       ];
     };
   };
-  
+    
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -123,11 +123,18 @@
     '';
   };
 
+  programs.helix = {
+    enable = true;
+    settings = {
+      theme = "sonokai";
+    };
+  };
+
   programs.alacritty = {
     enable = true;
     settings = {
       font = {
-        normal = { family = "UDEV Gothic NF"; style = "Regular"; };
+        normal = { family = "UDEV Gothic 35NF"; style = "Regular"; };
         size = 16;
       };
       colors = {
@@ -136,18 +143,26 @@
     };
   };
 
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
+
   programs.google-chrome.enable = true;
 
   programs.gpg.enable = true;
 
   services.gpg-agent = {
     enable = true;
-#    pinentry.package = pkgs.pinentry-gnome3;
+    pinentry.package = pkgs.pinentry-gnome3;
     enableSshSupport = true;
   };
 
   programs.git = {
     enable = true;
+    ignores = [
+      ".direnv"
+    ];
     settings = {
       user = {
         name = "kanarus";
@@ -161,5 +176,29 @@
 
   programs.wofi = {
     enable = true;
+  };
+
+  i18n.inputMethod = {
+    enable = true;
+    type = "fcitx5";
+    fcitx5 = {
+      addons = [ pkgs.fcitx5-mozc ];
+      settings.inputMethod = {
+        GroupOrder."0" = "Default";
+        "Groups/0" = {
+          Name = "Default";
+          "Default Layout" = "us";
+          DefaultIM = "mozc";
+        };
+        "Groups/0/Items/0" = {
+          Name = "keyboard-us";
+          Layout = "";
+        };
+        "Groups/0/Items/1" = {
+          Name = "mozc";
+          Layout = "";
+        };
+      };
+    };
   };
 }

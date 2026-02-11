@@ -97,7 +97,7 @@
   environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
 
   environment.systemPackages = with pkgs; [
-    git
+#    git
     curl
     wget
   ];
