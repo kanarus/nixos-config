@@ -4,15 +4,15 @@
   home.username = username;
   home.homeDirectory = "/home/${username}";
   home.stateVersion = "25.11";
-  home.packages = [
-    inputs.ghostty.packages.${pkgs.system}.default
-    inputs.niri.packages.${pkgs.system}.default
-  ];
-
+  
   programs = {
     zsh = import ./zsh;
     helix = import ./helix;
   };
+  home.packages = [
+    inputs.ghostty.packages.${pkgs.system}.default
+    inputs.niri.packages.${pkgs.system}.default
+  ];
   home.file = {
     "${config.xdg.configHome}/ghostty/config".text = builtins.readFile ./ghostty/config;
     "${config.xdg.configHome}/niri/config.kdl".text = builtins.readFile ./niri/config.kdl;
@@ -27,7 +27,7 @@
       monitor = ",2560x1440@60,0x0,1";
 
       "$mod" = "SUPER";
-      "$terminal" = "alacritty";
+      "$terminal" = "ghostty";
       "$browser" = "google-chrome-stable"; # pkg `google-chrome` provides command `google-chrome-stable`!
       "$menu" = "wofi --show drun";
 
@@ -79,18 +79,18 @@
     };
   };  
 
-  programs.alacritty = {
-    enable = true;
-    settings = {
-      font = {
-        normal = { family = "UDEV Gothic 35NF"; style = "Regular"; };
-        size = 16;
-      };
-      colors = {
-        primary = { background = "#1c1c1c"; };
-      };
-    };
-  };
+  # programs.alacritty = {
+  #   enable = true;
+  #   settings = {
+  #     font = {
+  #       normal = { family = "UDEV Gothic 35NF"; style = "Regular"; };
+  #       size = 16;
+  #     };
+  #     colors = {
+  #       primary = { background = "#1c1c1c"; };
+  #     };
+  #   };
+  # };
 
   programs.direnv = {
     enable = true;
@@ -121,10 +121,6 @@
       commit.gpgSign = true;
       init.defaultBranch = "main";
     };
-  };
-
-  programs.wofi = {
-    enable = true;
   };
 
   i18n.inputMethod = {
