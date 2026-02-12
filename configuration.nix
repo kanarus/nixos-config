@@ -90,7 +90,7 @@
     shell = pkgs.zsh;
   };
 
-  programs.niri.enable = true;
+  # programs.niri.enable = true;
   programs.uwsm = {
     enable = true;
     waylandCompositors.niri = {

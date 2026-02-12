@@ -15,7 +15,9 @@ in
   };
   home.packages = [
     inputs.ghostty.packages.${pkgs.system}.default
+    pkgs.niri
     pkgs.swaybg
+    pkgs.mako
     # inputs.niri.packages.${pkgs.system}.default
   ];
   home.file = {
