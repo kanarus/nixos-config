@@ -14,8 +14,8 @@
     helix = import ./helix;
   };
   home.file = {
-    "${config.xdg.configHome}/ghostty/config" = builtins.readFile ./ghostty/config;
-    "${config.xdg.configHome}/niri/config.kdl" = builtins.readFile ./niri/config.kdl;
+    "${config.xdg.configHome}/ghostty/config".text = builtins.readFile ./ghostty/config;
+    "${config.xdg.configHome}/niri/config.kdl".text = builtins.readFile ./niri/config.kdl;
   };
   
   wayland.windowManager.hyprland = {
