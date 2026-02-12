@@ -14,7 +14,7 @@ in
   };
   home.packages = [
     inputs.ghostty.packages.${pkgs.system}.default
-    pkgs.niri
+    # pkgs.niri
     pkgs.swaybg
     pkgs.mako
   ];

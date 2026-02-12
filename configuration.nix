@@ -102,8 +102,19 @@
   # ];
   programs.niri = {
     enable = true;
-    package = pkgs.niri.override {
-      libgbm = pkgs.mesa;
+    # package = pkgs.niri.overrideAttrs (oldAttrs: {
+    #   buildInputs = (oldAttrs.buildInputs or []) ++ [ pkgs.mesa ];
+    # });
+    package = pkgs.symlinkJoin {
+      name = "niri-patched";
+      paths = [ pkgs.niri ];
+      buildInputs = [ pkgs.makeWrapper ];
+      postBuild = ''
+        wrapProgram $out/bin/niri --prefix LD_LIBRARY_PATH : "/run/opengl-driver/lib"
+      '';
+      passthru = {
+        providedSessions = [ "niri" ];
+      };
     };
   };
   programs.uwsm = {
