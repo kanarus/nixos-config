@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, specialArgs, ... }:
+{ config, lib, pkgs, inputs, specialArgs, ... }:
 
 {
   imports = [ # Include the results of the hardware scan.
@@ -90,8 +90,19 @@
     shell = pkgs.zsh;
   };
 
+  programs.niri.enable = true;
+  programs.uwsm = {
+    enable = true;
+    waylandCompositors.niri = {
+      prettyName = "Niri";
+      comment = "Niri compositor managed by UWSM";
+      binPath = "${pkgs.niri}";
+      extraArgs = [ "--session" ];
+    };
+  };
   hardware.graphics.enable = true;
-  programs.hyprland.enable = true;
+
+  # programs.hyprland.enable = true;
 
   environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
 
