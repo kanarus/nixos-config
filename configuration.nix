@@ -83,13 +83,12 @@
   # services.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
+  programs.zsh.enable = true;
   users.users.kanarus = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "video" ];
     shell = pkgs.zsh;
   };
-
-  programs.zsh.enable = true;
 
   hardware.graphics.enable = true;
   programs.hyprland.enable = true;
@@ -97,7 +96,6 @@
   environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
 
   environment.systemPackages = [
-    # specialArgs.inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default
     pkgs.curl
     pkgs.wget
   ];
