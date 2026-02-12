@@ -89,8 +89,13 @@
     extraGroups = [ "wheel" "networkmanager" "video" ];
     shell = pkgs.zsh;
   };
-
-  # programs.niri.enable = true;
+  
+  nixpkgs.overlays = [ inputs.niri.overlays.default ];
+  imports = [ inputs.niri.nixosModules.niri ];
+  programs.niri = {
+    enable = true;
+    packages = pkgs.niri; # overlay
+  };
   programs.uwsm = {
     enable = true;
     waylandCompositors.niri = {
