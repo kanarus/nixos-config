@@ -3,19 +3,22 @@ let
   wallpaper = "${config.xdg.dataHome}/wallpapers/default.png";
 in
 {
-  programs.home-manager.enable = true;
-
   home.username = username;
   home.homeDirectory = "/home/${username}";
   home.stateVersion = "25.11";
   
+  nixpkgs.overlays = [
+    inputs.niri.overlays.niri
+  ]; 
+ 
   programs = {
+    home-manager.enable = true;
     zsh = import ./zsh;
     helix = import ./helix;
   };
   home.packages = [
     inputs.ghostty.packages.${pkgs.system}.default
-    inputs.niri.packages.${pkgs.system}.default
+    pkgs.niri # overlay
     pkgs.swaybg
     pkgs.mako
   ];
