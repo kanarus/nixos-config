@@ -1,7 +1,5 @@
 {
   inputs = {
-    username = "kanarus";
-    
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     
     home-manager = {
@@ -18,9 +16,10 @@
     };
   };
 
-  outputs = { self, username, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
       system = "x86_64-linux";
+      username = "kanarus";
     in {
       nixosConfigurations = {
         nixos = nixpkgs.lib.nixosSystem {
@@ -35,7 +34,7 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = { inherit inputs; };
+              home-manager.extraSpecialArgs = { inherit inputs; inherit username; };
               home-manager.users.${username} = import ./home.nix;
             }
           ];

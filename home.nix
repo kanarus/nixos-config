@@ -1,8 +1,8 @@
-{ config, pkgs, inputs, ... }: {
+{ config, pkgs, inputs, username, ... }: {
   programs.home-manager.enable = true;
 
-  home.username = inputs.username;
-  home.homeDirectory = "/home/${inputs.username}";
+  home.username = username;
+  home.homeDirectory = "/home/${username}";
   home.stateVersion = "25.11";
   home.packages = [
     inputs.ghostty.packages.${pkgs.system}.default
