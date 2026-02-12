@@ -103,7 +103,7 @@
   programs.niri = {
     enable = true;
     package = pkgs.niri.override {
-      mesa = pkgs.mesa;
+      libglvnd = pkgs.libglvnd;
     };
   };
   programs.uwsm = {
