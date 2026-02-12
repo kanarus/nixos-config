@@ -1,19 +1,18 @@
-{ config, pkgs, inputs, ... }:
-
-{
+{ config, pkgs, inputs, ... }: {
   programs.home-manager.enable = true;
 
-  home.username = "kanarus";
-  home.homeDirectory = "/home/kanarus";
+  home.username = inputs.username;
+  home.homeDirectory = "/home/${inputs.username}";
   home.stateVersion = "25.11";
   home.packages = [
     inputs.ghostty.packages.${pkgs.system}.default
+    inputs.niri.packages.${pkgs.system}.default
   ];
 
-  programs.niri = import ./niri;
-  programs.zsh = import ./zsh;
-  programs.helix = import ./helix;
-
+  programs = {
+    zsh = import ./zsh;
+    helix = import ./helix;
+  };
   home.file = {
     "${config.xdg.configHome}/ghostty/config" = builtins.readFile ./ghostty/config;
     "${config.xdg.configHome}/niri/config.kdl" = builtins.readFile ./niri/config.kdl;
