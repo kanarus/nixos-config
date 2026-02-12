@@ -11,9 +11,10 @@
       url = "github:ghostty-org/ghostty";
     };
 
-    # niri = {
-    #   url = "github:niri-wm/niri";
-    # };
+    niri = {
+      url = "github:niri-wm/niri";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:

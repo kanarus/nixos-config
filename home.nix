@@ -15,10 +15,9 @@ in
   };
   home.packages = [
     inputs.ghostty.packages.${pkgs.system}.default
-    pkgs.niri
+    inputs.niri.packages.${pkgs.system}.default
     pkgs.swaybg
     pkgs.mako
-    # inputs.niri.packages.${pkgs.system}.default
   ];
   home.file = {
     "${config.xdg.configHome}/ghostty/config".text = builtins.readFile ./ghostty/config;
