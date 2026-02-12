@@ -8,7 +8,7 @@ in
   home.stateVersion = "25.11";
   
   nixpkgs.overlays = [
-    inputs.niri.overlays.niri
+    inputs.niri.overlays.default
   ]; 
  
   programs = {
