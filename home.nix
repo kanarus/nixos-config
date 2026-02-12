@@ -55,7 +55,7 @@
       };
       
       bind = [
-        "$mod, A, exec, $terminal"
+        "$mod, T, exec, $terminal"
         "$mod, B, exec, $browser"
         # "$mod, E, exec, dolphin"   # file manager
         "$mod, Space, exec, $menu" # wofi is recommended
