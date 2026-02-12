@@ -90,11 +90,11 @@
     shell = pkgs.zsh;
   };
   
-  nixpkgs.overlays = [ inputs.niri.overlays.default ];
-  imports = [ inputs.niri.nixosModules.niri ];
+  # nixpkgs.overlays = [ inputs.niri.overlays.default ];
+  # imports = [ inputs.niri.nixosModules.niri ];
   programs.niri = {
     enable = true;
-    packages = pkgs.niri; # overlay
+    package = pkgs.niri;
   };
   programs.uwsm = {
     enable = true;
