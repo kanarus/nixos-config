@@ -92,9 +92,19 @@
   
   # nixpkgs.overlays = [ inputs.niri.overlays.default ];
   # imports = [ inputs.niri.nixosModules.niri ];
+  # nixpkgs.overlays = [
+  #   (final: prev: {
+  #     niri = prev.niri.overrideAttrs (old: {
+  #       pname = "niri-rebuilt";
+  #       # doCheck = false;
+  #     });
+  #   })
+  # ];
   programs.niri = {
     enable = true;
-    package = pkgs.niri;
+    package = pkgs.niri.override {
+      mesa = pkgs.mesa;
+    };
   };
   programs.uwsm = {
     enable = true;
