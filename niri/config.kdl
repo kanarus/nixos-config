@@ -1,4 +1,4 @@
 binds {
 	Mod+T { spawn "ghostty"; }
-	Mod+B { spawn "google-chorme-stable" }
+	Mod+B { spawn "google-chorme-stable"; }
 }
