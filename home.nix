@@ -79,19 +79,6 @@
     };
   };  
 
-  # programs.alacritty = {
-  #   enable = true;
-  #   settings = {
-  #     font = {
-  #       normal = { family = "UDEV Gothic 35NF"; style = "Regular"; };
-  #       size = 16;
-  #     };
-  #     colors = {
-  #       primary = { background = "#1c1c1c"; };
-  #     };
-  #   };
-  # };
-
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
