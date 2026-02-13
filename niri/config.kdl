@@ -19,6 +19,11 @@ window-rule {
     open-fullscreen         false
     open-maximized          false
     open-maximized-to-edges false
+    geometry-corner-radius  12
+    focus-ring {
+    	on
+    	width 2
+    }
 }
 
 hotkey-overlay {
