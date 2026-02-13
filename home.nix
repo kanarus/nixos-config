@@ -11,6 +11,7 @@
   };
   home.packages = [
     inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default
+    pkgs.alacritty
     pkgs.mako
     pkgs.waybar
     pkgs.swaybg
@@ -19,6 +20,7 @@
     pkgs.xwayland-satellite
   ];
   home.file = {
+    "${config.xdg.configHome}/alacritty/alacritty.toml".text = builtins.readFile ./alacritty/alacritty.toml;
     "${config.xdg.configHome}/ghostty/config".text = builtins.readFile ./ghostty/config;
     "${config.xdg.configHome}/niri/config.kdl".text = builtins.readFile ./niri/config.kdl;
     "${config.xdg.dataHome}/wallpaper/default.png".source = ./assets/nix-wallpaper-gear.png;
