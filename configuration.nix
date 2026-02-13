@@ -59,22 +59,24 @@
 
   services.qemuGuest.enable = true;
   services.spice-vdagentd.enable = true; # clipboad sharing
-  
+
+  programs.sddm-astronaut.enable = true;
   services.displayManager.sddm = {
     enable = true;
     wayland =  {
       enable = true;
     };
-    settings = {
-      X11 = {
-        KeyboardLayout = "us";
-      };
-    };
+    theme = "sddm-astronaut-theme";
+    # settings = {
+    #   X11 = {
+    #     KeyboardLayout = "us";
+    #   };
+    # };
   };
 
   services.xserver.enable = true;
   # Configure keymap in X11
-  services.xserver.xkb.layout = "us";
+  # services.xserver.xkb.layout = "us";
   # services.xserver.xkb.options = "eurosign:e,caps:escape";
 
   # Enable CUPS to print documents.
