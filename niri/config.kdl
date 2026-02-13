@@ -21,6 +21,10 @@ window-rule {
     open-maximized-to-edges false
 }
 
+howkey-overlay {
+	skip-at-startup
+	hide-not-bound
+}
 spawn-at-startup "waybar"
 spawn-at-startup "swaybg" "-i" "/home/kanarus/.local/share/wallpaper/default.png" "-m" "fill"
 
