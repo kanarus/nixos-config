@@ -10,7 +10,7 @@
     helix = import ./helix;
   };
   home.packages = [
-    pkgs.ghostty
+    inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default
     pkgs.mako
     pkgs.waybar
     pkgs.swaybg
