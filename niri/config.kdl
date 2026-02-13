@@ -20,6 +20,7 @@ window-rule {
     open-maximized          false
     open-maximized-to-edges false
     geometry-corner-radius  12
+    clip-to-geometry        true
     focus-ring {
     	on
     	width 2
