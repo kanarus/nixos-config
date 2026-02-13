@@ -3,5 +3,5 @@ spawn-at-startup "swaybg" "-i" "~/.local/share/wallpaper/default.png" "-m" "fill
 
 binds {
 	Mod+T { spawn "alacritty"; }
-	Mod+B { spawn "google-chorme-stable"; }
+	Mod+B { spawn "google-chrome-stable"; }
 }
