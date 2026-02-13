@@ -1,7 +1,4 @@
 { config, pkgs, inputs, username, ... }:
-let
-  wallpaper = "${config.xdg.dataHome}/wallpapers/default.png";
-in
 {
   home.username = username;
   home.homeDirectory = "/home/${username}";
