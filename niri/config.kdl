@@ -1,7 +1,28 @@
+input {
+	keyboard {
+		xkb {
+			layout "us"
+		}
+	}
+	touchpad {
+		tap
+		natural-scroll
+	}
+}
+
+output "Red Hat, Inc. QEMU Monitor Unknown" {
+	mode "1920x1440@60.000"
+}
+
 spawn-at-startup "waybar"
-spawn-at-startup "swaybg" "-i" "~/.local/share/wallpaper/default.png" "-m" "fill" "-o" "*"
+spawn-at-startup "swaybg" "-i" "~/.local/share/wallpaper/default.png" "-m" "fill"
 
 binds {
 	Mod+T { spawn "alacritty"; }
 	Mod+B { spawn "google-chrome-stable"; }
+
+	Mod+Left  { focus-column-left; }
+	Mod+Right { focus-column-right; }
+	Mod+TouchpadScrollRight { focus-column-right; }
+	Mod+TouchpadScrollLeft  { focus-column-left; }
 }
