@@ -19,7 +19,7 @@ in
     pkgs.swaybg
     pkgs.swayidle
     pkgs.swaylock
-    pkgs.xwayland-satelite
+    pkgs.xwayland-satellite
   ];
   home.file = {
     "${config.xdg.configHome}/ghostty/config".text = builtins.readFile ./ghostty/config;
