@@ -5,7 +5,7 @@
 { config, lib, pkgs, inputs, specialArgs, ... }:
 
 {
-  imports = [ # Include the results of the hardware scan.
+  imports = [
     ./hardware-configuration.nix
   ];
 
@@ -60,13 +60,14 @@
   services.qemuGuest.enable = true;
   services.spice-vdagentd.enable = true; # clipboad sharing
 
-  programs.sddm-astronaut.enable = true;
+  # programs.sddm-astronaut.enable = true;
   services.displayManager.sddm = {
     enable = true;
     wayland =  {
       enable = true;
     };
     theme = "sddm-astronaut-theme";
+    extraPackages = [ pkgs.sddm-astronaut ];
     # settings = {
     #   X11 = {
     #     KeyboardLayout = "us";
