@@ -60,8 +60,17 @@
   services.qemuGuest.enable = true;
   services.spice-vdagentd.enable = true; # clipboad sharing
   
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = true;
+  services.displayManager.sddm = {
+    enable = true;
+    wayland =  {
+      enable = true;
+    };
+    settings = {
+      X11 = {
+        KeyboardLayout = "us";
+      };
+    };
+  };
 
   services.xserver.enable = true;
   # Configure keymap in X11
