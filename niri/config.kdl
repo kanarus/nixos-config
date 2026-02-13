@@ -11,7 +11,8 @@ input {
 }
 
 output "Red Hat, Inc. QEMU Monitor Unknown" {
-	mode "1920x1440@60.000"
+	scale 1
+	mode "1920x1080@60.000"
 }
 
 spawn-at-startup "waybar"
