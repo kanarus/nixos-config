@@ -22,6 +22,7 @@
     "${config.xdg.configHome}/alacritty/alacritty.toml".text = builtins.readFile ./alacritty/alacritty.toml;
     "${config.xdg.configHome}/ghostty/config".text = builtins.readFile ./ghostty/config;
     "${config.xdg.configHome}/niri/config.kdl".text = builtins.readFile ./niri/config.kdl;
+    "${config.xdg.configHome}/waybar/style.css".text = builtins.readFile ./waybar/style.css;
     "${config.xdg.dataHome}/wallpaper/default.png".source = ./assets/nix-wallpaper-gear.png;
   };
 
