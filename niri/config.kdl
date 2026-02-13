@@ -1,4 +1,7 @@
+spawn-at-startup "waybar"
+spawn-at-startup "swaybg" "-i" "~/.local/share/wallpaper/default.png" "-m" "fill" "-o" "*"
+
 binds {
-	Mod+T { spawn "ghostty"; }
+	Mod+T { spawn "alacritty"; }
 	Mod+B { spawn "google-chorme-stable"; }
 }

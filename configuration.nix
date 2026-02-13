@@ -122,7 +122,7 @@
     waylandCompositors.niri = {
       prettyName = "Niri";
       comment = "Niri compositor managed by UWSM";
-      binPath = "${pkgs.niri}";
+      binPath = "/run/current-system/sw/bin/niri";
       extraArgs = [ "--session" ];
     };
   };

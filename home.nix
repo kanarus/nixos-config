@@ -10,7 +10,6 @@
     helix = import ./helix;
   };
   home.packages = [
-    inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default
     pkgs.alacritty
     pkgs.mako
     pkgs.waybar

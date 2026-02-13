@@ -1,3 +1,9 @@
 [font]
 size = 14
-normal = { family = "UDEV Gothic 35NF", style = "" }
+normal = { family = "UDEV Gothic 35NF" }
+
+[window]
+decorations = "None"
+
+[cursor]
+style = { shape = "Beam" }
