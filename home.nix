@@ -13,35 +13,38 @@ in
     helix = import ./helix;
   };
   home.packages = [
-    inputs.ghostty.packages.${pkgs.system}.default
-    # pkgs.niri
-    pkgs.swaybg
+    pkgs.ghostty
     pkgs.mako
+    pkgs.waybar
+    pkgs.swaybg
+    pkgs.swayidle
+    pkgs.swaylock
+    pkgs.xwayland-satelite
   ];
   home.file = {
     "${config.xdg.configHome}/ghostty/config".text = builtins.readFile ./ghostty/config;
     "${config.xdg.configHome}/niri/config.kdl".text = builtins.readFile ./niri/config.kdl;
-    "${wallpaper}".source = ./assets/nix-wallpaper-gear.png;
+    "${config.xdg.dataHome}/wallpaper/default.png".source = ./assets/nix-wallpaper-gear.png;
   };
 
-  systemd.user.services = {
-    swaybg = {
-      Unit = {
-        Description = "Wallpaper solution for Wayland";
-        Documentation = "https://github.com/swaywm/swaybg";
-        PartOf = "graphical-session.target";
-        After = "graphical-session.target";
-        Requisite = "graphical-session.target";
-      };
-      Service = {
-        ExecStart = "${pkgs.swaybg}/bin/swaybg -i ${wallpaper} -m fill -o *";
-        Restart = "on-failure";
-      };
-      Install = {
-        WantedBy = [ "graphical-session.target" ];
-      };
-    };
-  };
+  # systemd.user.services = {
+  #   swaybg = {
+  #     Unit = {
+  #       Description = "Wallpaper solution for Wayland";
+  #       Documentation = "https://github.com/swaywm/swaybg";
+  #       PartOf = "graphical-session.target";
+  #       After = "graphical-session.target";
+  #       Requisite = "graphical-session.target";
+  #     };
+  #     Service = {
+  #       ExecStart = "${pkgs.swaybg}/bin/swaybg -i ${wallpaper} -m fill -o *";
+  #       Restart = "on-failure";
+  #     };
+  #     Install = {
+  #       WantedBy = [ "graphical-session.target" ];
+  #     };
+  #   };
+  # };
 
   # wayland.windowManager.hyprland = {
   #   enable = true;

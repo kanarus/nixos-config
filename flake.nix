@@ -6,15 +6,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    ghostty = {
-      url = "github:ghostty-org/ghostty";
-    };
-
-    # niri = {
-    #   url = "github:niri-wm/niri";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
