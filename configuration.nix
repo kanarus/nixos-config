@@ -68,11 +68,11 @@
     };
     theme = "sddm-astronaut-theme";
     extraPackages = [ pkgs.sddm-astronaut ];
-    # settings = {
-    #   X11 = {
-    #     KeyboardLayout = "us";
-    #   };
-    # };
+    settings = {
+      Theme = {
+        ThemeDir = "${pkgs.sddm-astronaut}/share/sddm/themes/sddm-astronaut-theme";
+      };
+    };
   };
 
   services.xserver.enable = true;
