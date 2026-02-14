@@ -70,7 +70,7 @@
     extraPackages = [ pkgs.sddm-astronaut ];
     settings = {
       Theme = {
-        ThemeDir = "${pkgs.sddm-astronaut}/share/sddm/themes/sddm-astronaut-theme";
+        ThemeDir = "${pkgs.sddm-astronaut}/share/sddm/themes";
       };
     };
   };
