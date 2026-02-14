@@ -67,8 +67,11 @@
       enable = true;
     };
     theme = "sddm-astronaut-theme";
-    embeddedTheme = "pixel_sakura";
-    extraPackages = [ pkgs.sddm-astronaut ];
+    extraPackages = [
+      (pkgs.sddm-astronaut.override {
+        embeddedTheme = "pixel_sakura";
+      })
+    ];
     settings = {
       Theme = {
         ThemeDir = "${pkgs.sddm-astronaut}/share/sddm/themes";
