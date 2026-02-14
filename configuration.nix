@@ -67,19 +67,19 @@
       enable = true;
     };
     theme = "sddm-astronaut-theme";
-    # extraPackages = [
-    #   (pkgs.sddm-astronaut.override {
-    #     # embeddedTheme = "pixel_sakura_static2";
-    #     themeConfig = {
+    extraPackages = [
+      (pkgs.sddm-astronaut.override {
+        embeddedTheme = "hyprland_kath"; # "pixel_sakura_static2";
+        themeConfig = {
           
-    #     };
-    #   })
-    # ];
-    # settings = {
-    #   Theme = {
-    #     ThemeDir = "${pkgs.sddm-astronaut}/share/sddm/themes";
-    #   };
-    # };
+        };
+      })
+    ];
+    settings = {
+      Theme = {
+        ThemeDir = "${pkgs.sddm-astronaut}/share/sddm/themes";
+      };
+    };
   };
 
   services.xserver.enable = true;
