@@ -69,7 +69,7 @@
     theme = "sddm-astronaut-theme";
     extraPackages = [
       (pkgs.sddm-astronaut.override {
-        embeddedTheme = "pixel_sakura";
+        embeddedTheme = "pixel_sakura_static";
       })
     ];
     settings = {
