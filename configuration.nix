@@ -67,16 +67,19 @@
       enable = true;
     };
     theme = "sddm-astronaut-theme";
-    extraPackages = [
-      (pkgs.sddm-astronaut.override {
-        embeddedTheme = "pixel_sakura_static";
-      })
-    ];
-    settings = {
-      Theme = {
-        ThemeDir = "${pkgs.sddm-astronaut}/share/sddm/themes";
-      };
-    };
+    # extraPackages = [
+    #   (pkgs.sddm-astronaut.override {
+    #     # embeddedTheme = "pixel_sakura_static2";
+    #     themeConfig = {
+          
+    #     };
+    #   })
+    # ];
+    # settings = {
+    #   Theme = {
+    #     ThemeDir = "${pkgs.sddm-astronaut}/share/sddm/themes";
+    #   };
+    # };
   };
 
   services.xserver.enable = true;
