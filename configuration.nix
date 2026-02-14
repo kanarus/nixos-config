@@ -67,6 +67,7 @@
       enable = true;
     };
     theme = "sddm-astronaut-theme";
+    embeddedTheme = "pixel_sakura";
     extraPackages = [ pkgs.sddm-astronaut ];
     settings = {
       Theme = {
