@@ -1,7 +1,11 @@
 setopt INTERACTIVE_COMMENTS
 
+# enable Ctrl-{left, right} to move by words 
 bindkey ";5C" forward-word
 bindkey ";5D" backward-word
+# enable {up, down} to complete only with history matching current input
+bindkey "^[OA" history-beginning-search-backward
+bindkey "^[OB" history-beginning-search-forward
 
 function git_status_color() {
   git_status_output=$(git status --short)
