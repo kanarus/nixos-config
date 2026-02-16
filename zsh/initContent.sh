@@ -5,25 +5,14 @@ bindkey ";5C" forward-word
 bindkey ";5D" backward-word
 
 # enable {up, down} to complete only with history matching current input & move cursor to end
-function __history_beginning_search_wrapped() {
-  if [[ $LASTWIDGET != history-beginning-search-* ]]; then
-    # the first fire of this up context
-    SEARCH_POSITION=$#LBUFFER
-  fi
-  CURSOR=$SEARCH_POSITION
-  zle history-beginning-search-$1
-  zle end-of-line
+bindkey "^[OA" history-beginning-search-backward
+bindkey "^[OB" history-beginning-search-forward
+
+function self_insert_with_log() {
+  echo "KEYS='$KEYS'" >> ~/debug2.log
+  zle .self-insert
 }
-function _up() {
-  __history_beginning_search_wrapped backward
-}
-function _down() {
-  __history_beginning_search_wrapped forward
-}
-zle -N _up
-zle -N _down
-bindkey "^[OA" _up
-bindkey "^[OB" _down
+zle -N self-insert self_insert_with_log
 
 # prompt style
 function git_status_color() {

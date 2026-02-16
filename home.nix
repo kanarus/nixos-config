@@ -7,10 +7,18 @@
   programs = {
     home-manager.enable = true;
     zsh = import ./zsh;
-    helix = import ./helix;
   };
   home.packages = [
+    # terminal
     pkgs.alacritty
+
+    # editor
+    pkgs.helix
+
+    # browser
+    pkgs.google-chrome
+
+    # desktop
     pkgs.mako
     pkgs.waybar
     pkgs.swaybg
@@ -19,10 +27,11 @@
     pkgs.xwayland-satellite
   ];
   home.file = {
-    "${config.xdg.configHome}/alacritty/alacritty.toml".text = builtins.readFile ./alacritty/alacritty.toml;
-    "${config.xdg.configHome}/ghostty/config".text = builtins.readFile ./ghostty/config;
-    "${config.xdg.configHome}/niri/config.kdl".text = builtins.readFile ./niri/config.kdl;
-    "${config.xdg.configHome}/waybar/style.css".text = builtins.readFile ./waybar/style.css;
+    "${config.xdg.configHome}/alacritty/alacritty.toml".source = ./alacritty/alacritty.toml;
+    "${config.xdg.configHome}/helix/config.toml".source = ./helix/config.toml;
+    "${config.xdg.configHome}/ghostty/config".source = ./ghostty/config;
+    "${config.xdg.configHome}/niri/config.kdl".source = ./niri/config.kdl;
+    "${config.xdg.configHome}/waybar/style.css".source = ./waybar/style.css;
     "${config.xdg.dataHome}/wallpaper/default.png".source = ./assets/nix-wallpaper-gear.png;
   };
 
@@ -30,8 +39,6 @@
     enable = true;
     nix-direnv.enable = true;
   };
-
-  programs.google-chrome.enable = true;
 
   programs.gpg.enable = true;
 

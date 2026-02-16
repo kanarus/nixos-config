@@ -1,0 +1,6 @@
+theme = "sonokai"
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+
