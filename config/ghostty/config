@@ -1,6 +1,0 @@
-font-family = "UDEV Gothic 35NF"
-font-size = 14
-shell-integration = none
-# window-decoration = none
-gtk-titlebar = false
-scrollbar = never
