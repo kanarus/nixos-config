@@ -27,11 +27,11 @@
     pkgs.xwayland-satellite
   ];
   home.file = {
-    "${config.xdg.configHome}/alacritty/alacritty.toml".source = ./alacritty/alacritty.toml;
-    "${config.xdg.configHome}/helix/config.toml".source = ./helix/config.toml;
-    "${config.xdg.configHome}/ghostty/config".source = ./ghostty/config;
-    "${config.xdg.configHome}/niri/config.kdl".source = ./niri/config.kdl;
-    "${config.xdg.configHome}/waybar/style.css".source = ./waybar/style.css;
+    "${config.xdg.configHome}/alacritty/alacritty.toml".source = ./config/alacritty/alacritty.toml;
+    "${config.xdg.configHome}/helix/config.toml".source = ./config/helix/config.toml;
+    "${config.xdg.configHome}/ghostty/config".source = ./config/ghostty/config;
+    "${config.xdg.configHome}/niri/config.kdl".source = ./config/niri/config.kdl;
+    "${config.xdg.configHome}/waybar/style.css".source = ./config/waybar/style.css;
     "${config.xdg.dataHome}/wallpaper/default.png".source = ./assets/nix-wallpaper-gear.png;
   };
 
