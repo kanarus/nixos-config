@@ -3,10 +3,29 @@ setopt INTERACTIVE_COMMENTS
 # enable Ctrl-{left, right} to move by words 
 bindkey ";5C" forward-word
 bindkey ";5D" backward-word
-# enable {up, down} to complete only with history matching current input
-bindkey "^[OA" history-beginning-search-backward
-bindkey "^[OB" history-beginning-search-forward
 
+# enable {up, down} to complete only with history matching current input & move cursor to end
+function __history_beginning_search_wrapped() {
+  if [[ $LASTWIDGET != history-beginning-search-* ]]; then
+    # the first fire of this up context
+    SEARCH_POSITION=$#LBUFFER
+  fi
+  CURSOR=$SEARCH_POSITION
+  zle history-beginning-search-$1
+  zle end-of-line
+}
+function _up() {
+  __history_beginning_search_wrapped backward
+}
+function _down() {
+  __history_beginning_search_wrapped forward
+}
+zle -N _up
+zle -N _down
+bindkey "^[OA" _up
+bindkey "^[OB" _down
+
+# prompt style
 function git_status_color() {
   git_status_output=$(git status --short)
   if [ -z $git_status_output ]; then
@@ -26,9 +45,11 @@ function maybe_git_branch() {
 setopt PROMPT_SUBST
 export PS1='%F{153}[%n%F{111}@%m%F{153}:%~]$(maybe_git_branch)%f '
 
+# aliases
 alias helix='hx'
 alias la='ls -al'
 
+# abbreviations
 typeset -Ag abbreviations
 abbreviations=(
   "ns"   "sudo nixos-rebuild switch --flake ~/nixos-config"
@@ -39,15 +60,12 @@ abbreviations=(
 )
 function expand_abbreviation() {
   local MATCH
-  # empty quotes: workaround to avoid nix's interpretation on the $-brace syntax,
-  # which here leads to an syntax error on nix side
   setopt EXTENDED_GLOB
-  LBUFFER=''${LBUFFER%%(#m)[_a-zA-Z0-9]#}
+  LBUFFER="${LBUFFER%%(#m)[_a-zA-Z0-9]#}"
   unsetopt EXTENDED_GLOB
-  LBUFFER+=''${abbreviations[$MATCH]:-$MATCH}
+  LBUFFER+="${abbreviations[$MATCH]:-$MATCH}"
   zle self-insert
 }
 zle -N expand_abbreviation
 bindkey " " expand_abbreviation
-bindkey -M isearch " " self-insert
-      
+bindkey -M isearch " " self-insert      
