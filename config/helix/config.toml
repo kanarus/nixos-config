@@ -1,6 +1,5 @@
-theme = "sonokai"
+theme = "kanarus"
 
 [editor.cursor-shape]
 insert = "bar"
 normal = "block"
-
