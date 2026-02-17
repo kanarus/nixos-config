@@ -90,7 +90,7 @@ error = { fg = 'red', bg = 'bg2', modifiers = ['bold'] }
 [palette]
 black = "#181819"
 bg_dim = "#222327"
-bg0 = "#181818"
+bg0 = "#2c2e34"
 bg1 = "#33353f"
 bg2 = "#363944"
 bg3 = "#3b3e48"
