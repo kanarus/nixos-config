@@ -8,8 +8,18 @@ let
       owner = "stepanzubkov";
       repo = "where-is-my-sddm-theme";
       rev = "v1.12.0";
-      hash = "sha256-";
+      hash = "sha256-4afb855bc07f3aa8a327aa9cfc03c3d00b242212";
     };
+
+    postPatch = ''
+      substituteInPlace where_is_my_sddm_theme/theme.conf \
+        --replace 'background=' 'background=/home/kanarus/nixos-config/assets/nix-wallpaper-gear.png'
+    '';
+
+    installPhase = ''
+      mkdir -p $out/share/sddm/themes
+      cp -a where_is_my_sddm_theme $out/share/sddm/themes/
+    '';
   };
 in
 {
@@ -18,6 +28,14 @@ in
   ];
   services.displayManager.sddm = {
     enable = true;
+    wayland =  {
+      enable = true;
+    };
     theme = "where_is_my_sddm_theme";
+    settings = {
+      Theme = {
+        ThemeDir = "${pkgs.where-is-my-sddm-theme}/share/sddm/themes";
+      };
+    };
   };
 }

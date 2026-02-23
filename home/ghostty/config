@@ -1,9 +1,11 @@
 # hide titlebar
 gtk-titlebar = false
-window-decoration = "none"
+window-decoration = none
 # 12px-rounded by niri
 window-padding-x = 6
 window-padding-y = 6
+
+shell-integration = none
 
 background = "#1c1917"
 

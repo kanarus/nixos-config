@@ -7,6 +7,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./sddm.nix
   ];
 
   # Use the GRUB 2 boot loader.
@@ -72,29 +73,6 @@
   console.useXkbConfig = true; # use xkb.options in tty.
 
   services.qemuGuest.enable = true;
-  services.spice-vdagentd.enable = true; # clipboad sharing
-
-  # programs.sddm-astronaut.enable = true;
-  services.displayManager.sddm = {
-    enable = true;
-    wayland =  {
-      enable = true;
-    };
-    theme = "sddm-astronaut-theme";
-    extraPackages = [
-      (pkgs.sddm-astronaut.override {
-        embeddedTheme = "hyprland_kath"; # "pixel_sakura_static2";
-        themeConfig = {
-
-        };
-      })
-    ];
-    settings = {
-      Theme = {
-        ThemeDir = "${pkgs.sddm-astronaut}/share/sddm/themes";
-      };
-    };
-  };
 
   services.xserver.enable = true;
   # Configure keymap in X11
