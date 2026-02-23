@@ -27,12 +27,26 @@
     "initcall_blacklist=simpledrm_platform_driver_init"
   ];
 
+  security.sudo = {
+    enable = true;
+    configFile = ''
+      Defaults timestamp_timeout=60
+    '';
+  };
+
   networking.hostName = "nixos"; # Define your hostname.
   # Configure network connections interactively with nmcli or nmtui.
   networking.networkmanager.enable = true;
 
   # Set your time zone.
   time.timeZone = "Asia/Tokyo";
+
+  environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
+
+  environment.systemPackages = [
+    pkgs.curl
+    pkgs.wget
+  ];
 
   fonts = {
     fontconfig.enable = true;
@@ -133,13 +147,6 @@
     };
   };
   hardware.graphics.enable = true;
-
-  environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
-
-  environment.systemPackages = [
-    pkgs.curl
-    pkgs.wget
-  ];
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
     "google-chrome"

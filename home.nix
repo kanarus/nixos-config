@@ -43,8 +43,9 @@
 
   services.gpg-agent = {
     enable = true;
+    defaultCacheTtl = 3600;
+    maxCacheTtl = 3600;
     pinentry.package = pkgs.pinentry-gnome3;
-    enableSshSupport = true;
   };
 
   programs.git = {
