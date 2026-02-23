@@ -1,4 +1,4 @@
-theme = "kanarus"
+theme = "meliora"
 
 [editor]
 shell = ['zsh', '-ic', 'eval "$1"', '--']
