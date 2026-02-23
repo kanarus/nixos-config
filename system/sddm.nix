@@ -28,5 +28,9 @@ in
     enable = true;
     wayland.enable = true;
     theme = "where_is_my_sddm_theme";
+    extraPackages = with pkgs; [
+      kdePackages.qt5compat     # for QtGraphicalEffects
+      kdePackages.qtdeclarative # for QtQuick
+    ];
   };
 }
