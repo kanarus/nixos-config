@@ -1,7 +1,6 @@
 theme = "kanarus"
 
 [editor]
-# shell = ['zsh', '-c', 'exec zsh -ic "$1 && exit 0"', '--']
 shell = ['zsh', '-ic', 'eval "$1"', '--']
 mouse = false
 default-yank-register = "+" # use system clipboard by default

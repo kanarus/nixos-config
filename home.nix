@@ -30,7 +30,6 @@
     "${config.xdg.configHome}/ghostty/config".source = ./config/ghostty/config;
     "${config.xdg.configHome}/helix/config.toml".source = ./config/helix/config.toml;
     "${config.xdg.configHome}/helix/themes/kanarus.toml".source = ./config/helix/themes/kanarus.toml;
-    # "${config.xdg.configHome}/helix/shell.sh".text = "exec zsh -ic \"$1 && exit 0\"";
     "${config.xdg.configHome}/niri/config.kdl".source = ./config/niri/config.kdl;
     "${config.xdg.configHome}/waybar/style.css".source = ./config/waybar/style.css;
     "${config.xdg.dataHome}/wallpaper/default.png".source = ./assets/nix-wallpaper-gear.png;
