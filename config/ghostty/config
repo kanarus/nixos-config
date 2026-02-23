@@ -1,2 +1,11 @@
-# gtk-titlebar = false
-# window-decoration = "server"
+# hide titlebar
+gtk-titlebar = false
+window-decoration = "none"
+# 12px-rounded by niri
+window-padding-x = 6
+window-padding-y = 6
+
+background = "#2c2e34"
+
+font-size = 14
+font-family = "UDEV Gothic 35NF"
