@@ -7,7 +7,7 @@
 {
   imports = [
     ./hardware-configuration.nix
-    # ./sddm.nix
+    ./sddm.nix
   ];
 
   # Use the GRUB 2 boot loader.
