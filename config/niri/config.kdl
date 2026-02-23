@@ -38,6 +38,6 @@ binds {
 	Mod+Q     { close-window; }
 	Mod+Left  { focus-column-left; }
 	Mod+Right { focus-column-right; }
-	Mod+T     { spawn "alacritty"; }
+	Mod+T     { spawn "ghostty"; }
 	Mod+B     { spawn "google-chrome-stable"; }
 }

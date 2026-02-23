@@ -10,16 +10,6 @@
   };
   home.packages = [
     # terminal
-    pkgs.alacritty
-
-    # (pkgs.symlinkJoin {
-    #   name = "ghostty-patched";
-    #   paths = [ pkgs.ghostty ];
-    #   buildInputs = [ pkgs.makeWrapper ];
-    #   postBuild = ''
-    #     wrapProgram $out/bin/ghostty --prefix LD_LIBRARY_PATH : "/run/opengl-driver/lib"
-    #   '';
-    # })
     pkgs.ghostty
 
     # editor
@@ -37,7 +27,6 @@
     pkgs.xwayland-satellite
   ];
   home.file = {
-    "${config.xdg.configHome}/alacritty/alacritty.toml".source = ./config/alacritty/alacritty.toml;
     "${config.xdg.configHome}/ghostty/config".source = ./config/ghostty/config;
     "${config.xdg.configHome}/helix/config.toml".source = ./config/helix/config.toml;
     "${config.xdg.configHome}/helix/themes/kanarus.toml".source = ./config/helix/themes/kanarus.toml;
