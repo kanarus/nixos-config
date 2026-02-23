@@ -9,15 +9,15 @@ trim-trailing-whitespace = true
 default-yank-register = "+" # use system clipboard by default
 continue-comments = false
 
-[clipboard-provider.custom]
-yank = { command = "wl-copy" }
-paste = { command = "wl-paste" }
+[editor.statusline]
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
 
 [editor.cursor-shape]
 insert = "bar"
 normal = "block"
 
-[editor.statusline]
-mode.normal = "NORMAL"
-mode.insert = "INSERT"
-mode.select = "SELECT"
+[editor.clipboard-provider.custom]
+yank = { command = "wl-copy" }
+paste = { command = "wl-paste" }
