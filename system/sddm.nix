@@ -14,10 +14,13 @@ let
     installPhase = ''
       cp ${../assets/nix-wallpaper-gear.png} where_is_my_sddm_theme/background.png
       substituteInPlace where_is_my_sddm_theme/theme.conf \
-        --replace 'background='            'background=background.png' \
-        --replace 'backgroundFill=#000000' 'backgroundFill=' \
-        --replace 'font=monospace'         'font="UDEV Gothic 35NF"' \
-        --replace 'helpFont=monospace'     'helpFont="UDEV Gothic 35NF"'
+        --replace 'background='               'background=background.png' \
+        --replace 'backgroundFill=#000000'    'backgroundFill=' \
+        --replace 'backgroundFillMode=aspect' 'backgroundFillMode=fill' \
+        --replace 'font=monospace'            'font="UDEV Gothic 35NF"' \
+        --replace 'helpFont=monospace'        'helpFont="UDEV Gothic 35NF"' \
+        --replace 'basicTextColor=#ffffff'    'basicTextColor=#000000' \
+        --replace 'passwordFontSize=96'       'passwordFontSize=60'
       mkdir -p $out/share/sddm/themes
       cp -a where_is_my_sddm_theme $out/share/sddm/themes/
     '';
