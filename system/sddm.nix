@@ -22,8 +22,8 @@ let
         --replace 'passwordInputWidth=0.5'          'passwordInputWidth=0.75' \
         --replace 'passwordInputRadius='            'passwordInputRadius=12' \
         --replace 'passwordInputBorderWidth=0'      'passwordInputBorderWidth=4' \
-        --replace 'passwordInputBorderColor='       'passwordInputBorderColor=#5f5f5f' \
-        --replace 'passwordTextColor='              'passwordTextColor=#5f5f5f' \
+        --replace 'passwordInputBorderColor='       'passwordInputBorderColor=#262626' \
+        --replace 'passwordTextColor='              'passwordTextColor=#262626' \
         --replace 'passwordCharacter=*'             'passwordCharacter=⬤' \
         --replace 'passwordFontSize=96'             'passwordFontSize=32'
       mkdir -p $out/share/sddm/themes
