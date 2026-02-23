@@ -2,7 +2,7 @@
 let
   customSddmTheme = pkgs.stdenvNoCC.mkDerivation {
     pname = "where-is-my-sddm-theme";
-    version = "1.12.1";
+    version = "1.12.2";
 
     src = pkgs.fetchFromGitHub {
       owner = "stepanzubkov";
@@ -11,7 +11,7 @@ let
       hash = "sha256-+R0PX84SL2qH8rZMfk3tqkhGWPR6DpY1LgX9bifNYCg=";
     };
 
-    # buildPhase = ''
+    # postPatch = ''
     #   substituteInPlace where_is_my_sddm_theme/theme.conf \
     #     --replace 'background=' 'background=/home/kanarus/nixos-config/assets/nix-wallpaper-gear.png'
     # '';
