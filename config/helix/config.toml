@@ -1,5 +1,15 @@
 theme = "kanarus"
 
+[editor]
+shell = ["zsh", "-i", "-c"]
+mouse = false
+default-yank-register = "+" # use system clipboard by default
+
 [editor.cursor-shape]
 insert = "bar"
 normal = "block"
+
+[editor.statusline]
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
