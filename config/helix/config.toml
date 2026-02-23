@@ -4,6 +4,8 @@ theme = "meliora"
 shell = ['zsh', '-ic', 'eval "$1"', '--']
 mouse = false
 scroll-lines = 0
+scrolloff = 0
+trim-trailing-whitespace = true
 default-yank-register = "+" # use system clipboard by default
 continue-comments = false
 
