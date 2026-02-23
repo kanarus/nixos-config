@@ -12,14 +12,14 @@
     # terminal
     pkgs.alacritty
 
-    pkgs.symlinkJoin {
+    (pkgs.symlinkJoin {
       name = "ghostty-patched";
       paths = [ pkgs.ghostty ];
       buildInputs = [ pkgs.makeWrapper ];
       postBuild = ''
         wrapProgram $out/bin/ghostty --prefix LD_LIBRARY_PATH : "/run/opengl-driver/lib"
       '';
-    }
+    })
 
     # editor
     pkgs.helix
