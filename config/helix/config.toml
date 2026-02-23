@@ -1,9 +1,10 @@
 theme = "kanarus"
 
 [editor]
-shell = ["zsh", "-i", "-c"]
+shell = ["zsh", "~/.config/helix/shell.sh"]
 mouse = false
 default-yank-register = "+" # use system clipboard by default
+continue-comments = false
 
 [editor.cursor-shape]
 insert = "bar"
