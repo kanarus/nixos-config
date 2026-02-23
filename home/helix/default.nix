@@ -1,6 +1,7 @@
 { config, pkgs, ... }: {
   home.packages = with pkgs; [
     helix
+    wl-clipboard
   ];
 
   home.file = {

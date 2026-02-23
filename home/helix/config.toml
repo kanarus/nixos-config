@@ -8,6 +8,7 @@ scrolloff = 0
 trim-trailing-whitespace = true
 default-yank-register = "+" # use system clipboard by default
 continue-comments = false
+clipboard-provider = "wl-clipboard"
 
 [editor.cursor-shape]
 insert = "bar"
