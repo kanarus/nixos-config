@@ -1,7 +1,7 @@
 theme = "kanarus"
 
 [editor]
-shell = ["zsh", "-c", "$1 && exit 0", "--"]
+shell = ['zsh', '-c', 'exec zsh -ic "$1 && exit 0"', '--']
 mouse = false
 default-yank-register = "+" # use system clipboard by default
 continue-comments = false
