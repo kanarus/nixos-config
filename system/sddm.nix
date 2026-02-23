@@ -8,10 +8,10 @@ let
       owner = "stepanzubkov";
       repo = "where-is-my-sddm-theme";
       rev = "v1.12.0";
-      hash = "sha256-4afb855bc07f3aa8a327aa9cfc03c3d00b242212";
+      hash = "sha256-+R0PX84SL2qH8rZMfk3tqkhGWPR6DpY1LgX9bifNYCg=";
     };
 
-    postPatch = ''
+    buildPhase = ''
       substituteInPlace where_is_my_sddm_theme/theme.conf \
         --replace 'background=' 'background=/home/kanarus/nixos-config/assets/nix-wallpaper-gear.png'
     '';
