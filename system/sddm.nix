@@ -19,7 +19,7 @@ let
         --replace 'backgroundFillMode=aspect' 'backgroundFillMode=fill' \
         --replace 'font=monospace'            'font="UDEV Gothic 35NF"' \
         --replace 'helpFont=monospace'        'helpFont="UDEV Gothic 35NF"' \
-        --replace 'basicTextColor=#ffffff'    'basicTextColor=#000000' \
+        --replace 'passwordTextColor=#ffffff' 'passwordTextColor=#000000' \
         --replace 'passwordFontSize=96'       'passwordFontSize=60'
       mkdir -p $out/share/sddm/themes
       cp -a where_is_my_sddm_theme $out/share/sddm/themes/
