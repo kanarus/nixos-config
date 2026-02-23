@@ -6,7 +6,7 @@
     swaybg
     swayidle
     swaylock
-    xwayland-satelite
+    xwayland-satellite
   ];
 
   home.file = {
