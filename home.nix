@@ -37,6 +37,7 @@
   ];
   home.file = {
     "${config.xdg.configHome}/alacritty/alacritty.toml".source = ./config/alacritty/alacritty.toml;
+    "${config.xdg.configHome}/ghostty/config".source = ./config/ghostty/config;
     "${config.xdg.configHome}/helix/config.toml".source = ./config/helix/config.toml;
     "${config.xdg.configHome}/helix/themes/kanarus.toml".source = ./config/helix/themes/kanarus.toml;
     "${config.xdg.configHome}/niri/config.kdl".source = ./config/niri/config.kdl;

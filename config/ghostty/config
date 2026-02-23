@@ -1,0 +1,2 @@
+gtk-titlebar = false
+window-decoration = "server"
