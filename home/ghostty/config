@@ -6,6 +6,7 @@ window-padding-x = 6
 window-padding-y = 6
 
 shell-integration = none
+confirm-close-surface = false
 
 background = "#1c1917"
 
