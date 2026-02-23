@@ -1,8 +1,11 @@
-{
+{ ... }: {
+  programs.zsh = {
     enable = true;
-    enableCompletion = true;
     autocd = true;
-    autosuggestion.enable = true;
+    enableCompletion = true;
+    autosuggestion = {
+      enable = true;
+    };
     syntaxHighlighting = {
       enable = true;
       styles = {
@@ -10,5 +13,5 @@
       };
     };
     initContent = builtins.readFile ./initContent.sh;
+  };
 }
-

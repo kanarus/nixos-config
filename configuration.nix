@@ -16,7 +16,7 @@
   # boot.loader.efi.efiSysMountPoint = "/boot/efi";
   # Define on which hard drive you want to install Grub.
   # boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
-  
+
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.kernelModules = [ "virtio_gpu" "virtio_pci" "virtio_blk" ];
@@ -85,7 +85,7 @@
       (pkgs.sddm-astronaut.override {
         embeddedTheme = "hyprland_kath"; # "pixel_sakura_static2";
         themeConfig = {
-          
+
         };
       })
     ];
@@ -122,7 +122,7 @@
     extraGroups = [ "wheel" "networkmanager" "video" ];
     shell = pkgs.zsh;
   };
-  
+
   programs.niri = {
     enable = true;
     package = pkgs.symlinkJoin {
@@ -148,9 +148,7 @@
   };
   hardware.graphics.enable = true;
 
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "google-chrome"
-  ];
+  nixpkgs.config.allowUnfreePredicate = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
