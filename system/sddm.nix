@@ -13,8 +13,8 @@ let
 
     installPhase = ''
       substituteInPlace where_is_my_sddm_theme/theme.conf --replace 'background=' 'background=/home/kanarus/nixos-config/assets/nix-wallpaper-gear.png'
-      substituteInPlace where_is_my_sddm_theme/theme.conf --replace 'font=monospace' 'font=UDEV Gothic 35NF'
-      substituteInPlace where_is_my_sddm_theme/theme.conf --replace 'helpFont=monospace' 'helpFont=UDEV Gothic 35NF'
+      substituteInPlace where_is_my_sddm_theme/theme.conf --replace 'font=monospace' 'font="UDEV Gothic 35NF"'
+      substituteInPlace where_is_my_sddm_theme/theme.conf --replace 'helpFont=monospace' 'helpFont="UDEV Gothic 35NF"'
       mkdir -p $out/share/sddm/themes
       cp -a where_is_my_sddm_theme $out/share/sddm/themes/
     '';
