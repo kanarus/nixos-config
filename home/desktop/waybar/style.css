@@ -1,17 +1,21 @@
 * {
-    font-family: 'Font Awesome 7 Free', 'UDEV Gothic 35NF';
-    font-size: 12px;
+    font-family: 'UDEV Gothic 35NF', 'Font Awesome 7 Free';
     min-height: 0;
 }
 
 window#waybar {
-    background-color: rgba(200, 200, 200, 0.05);
-    border-bottom: 2px solid rgba(200, 200, 200, 0.1);
+    font-size: 12px;
     color: #e2eaff;
+    background-color: rgba(200, 200, 200, 0.04);
+    border-bottom: 2px solid rgba(200, 200, 200, 0.16);
 }
 
 tooltip {
-    background: rgba(100, 100, 100, 0.1);
+    background-color: rgba(100, 100, 100, 0.84);
+}
+tooltip * {
+    color: #e2eaff;
+    font-size: 16px;
 }
 
 #clock,
@@ -20,12 +24,10 @@ tooltip {
 #network,
 #battery,
 #tray,
-#custom-power
-{
-    padding: 0;
-    margin: 4px 4px;
+#custom-power {
+    padding: 0 4px;
+    margin-right: 4px;
     background-color: transparent;
-    border: 1px solid; /* debug */
 }
 
 #idle_inhibitor.activated {
@@ -51,4 +53,8 @@ tooltip {
 #battery.critical:not(.charging) {
     background-color: rgba(200, 80, 80, 0.8);
     color: #ffffff;
+}
+
+#custom-power.GtkMenu {
+    background-color: rgba(100, 100, 100, 0.84);
 }
