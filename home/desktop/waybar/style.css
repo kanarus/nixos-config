@@ -96,8 +96,8 @@ button:hover {
 #power-profiles-daemon,
 #mpd {
     padding: 0 12px;
-    margin: 4px 6px;
-    background-color: rgba(30, 30, 35, 0.7);
+    margin: 4px;
+    background-color: rgba(30, 30, 35, 0.2);
     color: #e2e2e2;
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.05);
@@ -119,17 +119,17 @@ button:hover {
 }
 
 #clock {
-    background-color: #64727D;
+    /* background-color: #64727D; */
 }
 
 #battery {
-    background-color: #ffffff;
-    color: #000000;
+    /* background-color: #ffffff; */
+    /* color: #000000; */
 }
 
 #battery.charging, #battery.plugged {
-    color: #ffffff;
-    background-color: #26A65B;
+    /* color: #ffffff; */
+    background-color: rgba(200, 200, 90, 0.8);
 }
 
 @keyframes blink {
