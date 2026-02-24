@@ -10,5 +10,7 @@ confirm-close-surface = false
 
 background = "#1c1917"
 
+cursor-style = bar
+
 font-size = 14
 font-family = "UDEV Gothic 35NF"
