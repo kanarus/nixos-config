@@ -11,6 +11,7 @@ input {
 }
 
 output "Red Hat, Inc. QEMU Monitor Unknown" {
+	focus-at-startup
 	scale 1
 	mode "1920x1080@60.000"
 }
