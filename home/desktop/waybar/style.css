@@ -9,6 +9,7 @@ window#waybar {
     border: none;
     color: #e2e2e2;
     padding: 0px 4px;
+    margin: 4px 4px;
     transition-property: background-color;
     transition-duration: .5s;
 }
@@ -96,7 +97,7 @@ button:hover {
 #power-profiles-daemon,
 #mpd {
     padding: 0 4px;
-    margin: 4px 8px;
+    margin: 4px 4px;
     /* background-color: rgba(30, 30, 35, 0.1); */
     background-color: transparent;
     color: #e2e2e2;
@@ -152,7 +153,7 @@ button:hover {
 }
 
 #power-profiles-daemon {
-    padding-right: 15px;
+    /* padding-right: 15px; */
 }
 
 #power-profiles-daemon.performance {
