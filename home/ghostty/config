@@ -5,6 +5,8 @@ window-decoration = none
 window-padding-x = 6
 window-padding-y = 6
 
+resize-overlay = never
+
 shell-integration = none
 confirm-close-surface = false
 
