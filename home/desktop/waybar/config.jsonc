@@ -5,7 +5,7 @@
   "modules-center": ["clock"],
   "modules-right": ["idle_inhibitor", "pulseaudio", "tray", "network", "battery", "custom/power"],
   "clock": {
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calender}</small></tt>",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
   },
   "idle_inhibitor": {
     "format": "{icon}",

@@ -7,6 +7,7 @@
     swayidle
     swaylock
     xwayland-satellite
+    papirus-icon-theme
   ];
 
   home.file = {
