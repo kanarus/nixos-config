@@ -39,7 +39,7 @@ binds {
 	Mod+Q            { close-window; }
 	Mod+Left         { focus-column-left; }
 	Mod+Right        { focus-column-right; }
-	Mod+Return       { fullscreen-window; }
+	Mod+Return       { toggle-windowed-fullscreen; }
 	Mod+T            { spawn "ghostty"; }
 	Mod+B            { spawn "google-chrome-stable"; }
 	Ctrl+Shift+Left  { swap-window-left; }
