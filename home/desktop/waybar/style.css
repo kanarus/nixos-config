@@ -54,7 +54,3 @@ tooltip * {
     background-color: rgba(200, 80, 80, 0.8);
     color: #ffffff;
 }
-
-#custom-power.GtkMenu {
-    background-color: rgba(100, 100, 100, 0.84);
-}
