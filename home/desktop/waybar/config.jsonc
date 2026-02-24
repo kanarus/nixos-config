@@ -1,0 +1,53 @@
+{
+  /* auto "height" */
+  "spacing": 4,
+  "modules-left": [],
+  "modules-center": ["clock"],
+  "modules-right": ["idle_inhibitor", "pulseaudio", "network", "tray", "custom/power"],
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": "",
+    }
+  },
+  "pulseaudio": {
+    "on-click": "pavucontrol",
+    "format": "{icon}",
+    "format-bluetooth": "{icon}",
+    "format-bluetooth-muted": "{icon}",
+    "format-muted": "",
+    "format-source": "",
+    "format-source-muted": "",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", ""]
+    },
+  },
+  "network": {
+    "tooltip-format": " {ifname} via {gwaddr}",
+    "format-wifi": "{essid} ({signalStrength}%)",
+    "format-ethernet": " {ipaddr}/{cidr}",
+    "format-linked": " {ifname} (No IP)",
+    "format-disconnected": "⚠ Disconnected",
+    "format-alt": "{ifname}: {ipaddr}/{cidr}",
+  },
+  "tray": {},
+  "custom/power": {
+    "format": "⏻",
+    "tooltip-format": "power menu",
+    "menu": "on-click",
+    "menu-file": "$HOME/.config/waybar/power_menu.xml",
+    "menu-actions": {
+      "shutdown": "shutdown",
+      "reboot": "reboot",
+      "suspend": "systemctl suspend",
+      "hibernate": "systemctl hybernate",
+    },
+  }
+}
