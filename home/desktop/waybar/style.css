@@ -6,9 +6,9 @@
 
 window#waybar {
     background-color: transparent;
-    /* border-bottom: 3px solid rgba(100, 114, 125, 0.5); */
     border: none;
     color: #e2e2e2;
+    padding: 0px 4px;
     transition-property: background-color;
     transition-duration: .5s;
 }
@@ -96,8 +96,8 @@ button:hover {
 #power-profiles-daemon,
 #mpd {
     padding: 0 12px;
-    margin: 4px;
-    background-color: rgba(30, 30, 35, 0.2);
+    margin: 6px 2px;
+    background-color: rgba(30, 30, 35, 0.1);
     color: #e2e2e2;
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.05);
