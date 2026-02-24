@@ -3,7 +3,10 @@
   "spacing": 4,
   "modules-left": [],
   "modules-center": ["clock"],
-  "modules-right": ["idle_inhibitor", "pulseaudio", "network", "tray", "custom/power"],
+  "modules-right": ["idle_inhibitor", "pulseaudio", "tray", "network", "battery", "custom/power"],
+  "clock": {
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calender}</small></tt>",
+  }
   "idle_inhibitor": {
     "format": "{icon}",
     "format-icons": {
@@ -29,6 +32,7 @@
       "default": ["", "", ""]
     },
   },
+  "tray": {},
   "network": {
     "tooltip-format": " {ifname} via {gwaddr}",
     "format-wifi": "{essid} ({signalStrength}%)",
@@ -37,7 +41,14 @@
     "format-disconnected": "⚠ Disconnected",
     "format-alt": "{ifname}: {ipaddr}/{cidr}",
   },
-  "tray": {},
+  "battery": {
+    "status": {
+      "warning": 30,
+      "critical": 15,
+    },
+    "format": "{capacity}%",
+    "format-icons": ["", "", "", "", ""],
+  },
   "custom/power": {
     "format": "⏻",
     "tooltip-format": "power menu",
