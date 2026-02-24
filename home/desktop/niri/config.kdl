@@ -39,8 +39,9 @@ binds {
 	Mod+Q            { close-window; }
 	Mod+Left         { focus-column-left; }
 	Mod+Right        { focus-column-right; }
+	Mod+Return       { maximize-window-to-edges; }
 	Mod+T            { spawn "ghostty"; }
 	Mod+B            { spawn "google-chrome-stable"; }
-	Ctrl+Shift+Left  { move-column-left; }
-	Ctrl+Shift+Right { move-column-right; }
+	Ctrl+Shift+Left  { swap-window-left; }
+	Ctrl+Shift+Right { swap-window-right; }
 }
