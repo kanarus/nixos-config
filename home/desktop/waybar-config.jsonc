@@ -63,7 +63,7 @@
     "format": "⏻",
     "tooltip-format": "Power Menu",
     "menu": "on-click",
-    "menu-file": "$HOME/.config/waybar/power_menu.xml",
+    "menu-file": "$HOME/.config/waybar/powermenu.xml",
     "menu-actions": {
       "shutdown": "shutdown",
       "reboot": "reboot",
