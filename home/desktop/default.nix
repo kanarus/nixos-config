@@ -37,8 +37,8 @@ in
       name = "Graphite-Dark";
     };
     iconTheme = {
-      package = pkgs.colloid-icon-theme;
-      name = "Colloid-Dark";
+      package = pkgs.papirus-icon-theme;
+      name = "Papirus-Dark";
     };
     font = {
       name = "UDEV Gothic 35NF";
