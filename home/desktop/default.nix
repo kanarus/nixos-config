@@ -42,7 +42,6 @@ in
     };
     font = {
       name = "UDEV Gothic 35NF";
-      size = 12;
     };
     colorScheme = "dark";
   };
