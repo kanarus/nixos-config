@@ -6,7 +6,7 @@
       waylandFrontend = true;
       addons = with pkgs; [
         fcitx5-mozc
-        fcitx-nord
+        fcitx5-nord
       ];
       settings.inputMethod = {
         GroupOrder."0" = "Default";
