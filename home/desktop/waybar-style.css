@@ -1,6 +1,5 @@
 * {
     font-family: 'UDEV Gothic 35NF', 'Font Awesome 7 Free';
-    min-height: 0;
 }
 
 window#waybar {
@@ -18,39 +17,15 @@ tooltip * {
     font-size: 16px;
 }
 
-#clock,
-#idle_inhibitor,
-#pulseaudio,
-#network,
-#battery,
-#tray,
-#custom-power {
-    padding: 0 4px;
-    margin-right: 4px;
-    background-color: transparent;
+widget box {
+    min-width: 22px;
 }
-
-#idle_inhibitor.activated {
-    background-color: #ecf0f1;
-    color: #2d3436;
+widget box:hover {
+    background-color: rgba(100, 100, 100, 0.84);
 }
-
-#pulseaudio:hover {
-    background-color: #a37800;
+widget label {
+    min-width: 22px;
 }
-#pulseaudio.muted {
-    background-color: #90b1b1;
-    color: #2a5c45;
-}
-
-#network.disconnected {
-    color: #f53c3c;
-}
-
-#battery.charging, #battery.plugged {
-    background-color: rgba(200, 200, 90, 0.8);
-}
-#battery.critical:not(.charging) {
-    background-color: rgba(200, 80, 80, 0.8);
-    color: #ffffff;
+widget label:hover {
+    background-color: rgba(100, 100, 100, 0.84);
 }

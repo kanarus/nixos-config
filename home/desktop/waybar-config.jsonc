@@ -2,7 +2,7 @@
   "height": 24,
   "modules-left": [],
   "modules-center": ["clock"],
-  "modules-right": ["idle_inhibitor", "pulseaudio", "tray", "network", "battery", "custom/power"],
+  "modules-right": ["tray", "network", "pulseaudio", "idle_inhibitor", "battery", "custom/power"],
   "clock": {
     "format": "{:%H:%M}",
     "tooltip-format": "<tt>      {:%b %Y}\n{calendar}</tt>",
@@ -25,10 +25,10 @@
   "pulseaudio": {
     "on-click": "pavucontrol",
     "format": "{icon}",
+    "format-muted": "",
     "format-bluetooth": "{icon}",
     "format-bluetooth-muted": "{icon}",
-    "format-muted": "",
-    "format-source": "",
+    "format-source": "",
     "format-source-muted": "",
     "format-icons": {
       "headphone": "",
@@ -44,11 +44,11 @@
   "network": {
     "format-wifi": "",
     "tooltip-format-wifi": "[WiFi] SSID: {essid} ({signalStrength}%)",
-    "format-ethernet": "",
+    "format-ethernet": "",
     "tooltip-format-ethernet": "[ethernet] {ipaddr}/{cidr}",
-    "format-linked": "",
+    "format-linked": "",
     "tooltip-format": "[network] {ifname} via {gwaddr}",
-    "format-disconnected": "⚠ Disconnected",
+    "format-disconnected": "⚠disconnected",
     "tooltip-format-disconnected": "",
   },
   "battery": {
