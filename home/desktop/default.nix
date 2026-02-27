@@ -11,7 +11,7 @@ let
   };
   gtkIconTheme = {
     # create symlinks named `fcitx_mozc_xxx` for all existing `fcitx-mozc-xxx`
-    package = pkgs.colloid-icon-theme.overrideAttrs (oldAttrs: {
+    package = pkgs.qogir-icon-theme.overrideAttrs (oldAttrs: {
       preInstall = (oldAttrs.preInstall or "") + ''
         for f in $(find Papirus* -type f -name "fcitx-mozc*.svg"); do
           dir="$(dirname $f)"
@@ -20,7 +20,7 @@ let
         done
       '';
     });
-    name = "Papirus-Dark";
+    name = "Qogir-Dark";
   };
 in
 {
