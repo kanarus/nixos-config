@@ -21,7 +21,7 @@ let
           base="$(basename $f)"
           ln -sf "$base" "$dir/$(echo $base | tr '-' '_')"
           if [ "$base" = "fcitx-mozc.svg" ]; then
-            ln -sf "$base" "$dir/fctix_mozc_hiragana.svg"
+            ln -sf "$base" "$dir/fcitx_mozc_hiragana.svg"
           fi
         done
       '';
