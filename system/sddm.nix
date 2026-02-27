@@ -16,7 +16,7 @@ let
       substituteInPlace where_is_my_sddm_theme/theme.conf \
         --replace 'background='                     'background=background.png' \
         --replace 'backgroundFill=#000000'          'backgroundFill=' \
-        --relace  'backgroundFillMode=aspect'       'backgroundFillMode=pad' \
+        --replace 'backgroundFillMode=aspect'       'backgroundFillMode=pad' \
         --replace 'font=monospace'                  'font="UDEV Gothic 35NF"' \
         --replace 'helpFont=monospace'              'helpFont="UDEV Gothic 35NF"' \
         --replace 'passwordInputCursorVisible=true' 'passwordInputCursorVisible=false' \
