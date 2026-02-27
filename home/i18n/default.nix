@@ -4,7 +4,10 @@
     type = "fcitx5";
     fcitx5 = {
       waylandFrontend = true;
-      addons = [ pkgs.fcitx5-mozc ];
+      addons = with pkgs; [
+        fcitx5-mozc
+        fcitx-nord
+      ];
       settings.inputMethod = {
         GroupOrder."0" = "Default";
         "Groups/0" = {
