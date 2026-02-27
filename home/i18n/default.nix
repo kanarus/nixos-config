@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ config, pkgs, ... }: {
   i18n.inputMethod = {
     enable = true;
     type = "fcitx5";
@@ -25,5 +25,12 @@
         };
       };
     };
+  };
+
+  home.file = {
+    "${config.xdg.configHome}/fcitx5/conf/classicui.conf".text = ''
+      [ClassicUI]
+      Theme=Nord-Dark
+    '';
   };
 }
