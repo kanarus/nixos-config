@@ -1,6 +1,6 @@
 setopt INTERACTIVE_COMMENTS
 
-# enable Ctrl-{left, right} to move by words 
+# enable Ctrl-{left, right} to move by words
 bindkey ";5C" forward-word
 bindkey ";5D" backward-word
 
@@ -57,4 +57,4 @@ function expand_abbreviation() {
 }
 zle -N expand_abbreviation
 bindkey " " expand_abbreviation
-bindkey -M isearch " " self-insert      
+bindkey -M isearch " " self-insert
