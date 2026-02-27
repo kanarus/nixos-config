@@ -37,6 +37,12 @@ export PS1='%F{153}[%n%F{111}@%m%F{153}:%~]$(maybe_git_branch)%f '
 # aliases
 alias helix='hx'
 alias la='ls -al'
+function merged () {
+  to="${1:-main}"
+  from=$(git branch --show-current)
+  git switch $to && git pull origin $to
+  git branch -D $from
+}
 
 # abbreviations
 typeset -Ag abbreviations
