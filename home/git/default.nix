@@ -7,6 +7,7 @@
     enable = true;
     ignores = [
       ".direnv/"
+      ".envrc"
       "flake.nix"
       "flake.lock"
     ];
