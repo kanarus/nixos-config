@@ -6,7 +6,9 @@
   programs.git = {
     enable = true;
     ignores = [
-      ".direnv"
+      ".direnv/"
+      "flake.nix"
+      "flake.lock"
     ];
     settings = {
       user = {
