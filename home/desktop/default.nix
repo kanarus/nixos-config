@@ -12,7 +12,7 @@ let
   gtkIconTheme = {
     # create symlinks named `fcitx_mozc_xxx` for all existing `fcitx-mozc-xxx`
     package = pkgs.papirus-icon-theme.overrideAttrs (oldAttrs: {
-      preInstall = (oldAttrs or "") + ''
+      preInstall = (oldAttrs.preInstall or "") + ''
         for f in $(find Papirus* -type f -name "fcitx-mozc*.svg"); do
           dir="$(dirname $f)"
           base="$(basename $f)"

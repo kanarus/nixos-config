@@ -44,9 +44,10 @@
 
   environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
 
-  environment.systemPackages = [
-    pkgs.curl
-    pkgs.wget
+  environment.systemPackages = with pkgs; [
+    git
+    curl
+    wget
   ];
 
   fonts = {
