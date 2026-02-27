@@ -6,7 +6,7 @@
       waylandFrontend = true;
       addons = with pkgs; [
         fcitx5-mozc
-        fcitx5-nord
+        fcitx5-fluent
       ];
       settings = {
         inputMethod = {
@@ -30,7 +30,7 @@
         addons = {
           classicui = {
             globalSection = {
-              "Theme" = "Nord-Dark";
+              "Theme" = "FluentDark";
             };
           };
         };
