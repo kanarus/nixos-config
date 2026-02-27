@@ -8,10 +8,6 @@ scrolloff = 0
 trim-trailing-whitespace = true
 continue-comments = false
 
-[editor.file-picker]
-git-ignore = false
-git-global = false
-
 [editor.statusline]
 mode.normal = "NORMAL"
 mode.insert = "INSERT"
