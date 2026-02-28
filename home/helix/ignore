@@ -1,2 +1,2 @@
 !.github/
-flake.nix
+!flake.nix
