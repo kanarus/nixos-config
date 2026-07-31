@@ -33,7 +33,7 @@
       ];
       "ExtensionSettings" = {
         "*" = {
-          "installation_mode" = "blocked"; # block any other addons not listed below
+          "installation_mode" = "blocked"; # block any other addons not listed below; cf. "allowed"
         };
         "uBlock0@raymondhill.net" = {
           "installation_mode" = "force_installed";
