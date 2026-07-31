@@ -226,25 +226,18 @@ require("lazy").setup({
       vim.lsp.config("*", {
         capabilities = require("blink.cmp").get_lsp_capabilities(),
       })
-
       ---@type LanguageConfig[]
       local languageconfigs = {
         {
-          lspconfigname = "nixd",
+          lspconfigname = "bashls",
         },
         {
-          lspconfigname = "lua_ls",
+          lspconfigname = "clangd",
+          indentwidth = 4,
         },
         {
           lspconfigname = "gopls",
           tabtospace = false,
-        },
-        {
-          lspconfigname = "rust_analyzer",
-          indentwidth = 4,
-        },
-        {
-          lspconfigname = "bashls",
         },
         {
           lspconfigname = "hls",
@@ -253,14 +246,20 @@ require("lazy").setup({
           lspconfigname = "lean",
         },
         {
-          lspconfigname = "ts_ls",
+          lspconfigname = "lua_ls",
         },
         {
-          lspconfigname = "clangd",
+          lspconfigname = "nixd",
+        },
+        {
+          lspconfigname = "rust_analyzer",
           indentwidth = 4,
         },
         {
           lspconfigname = "tinymist",
+        },
+        {
+          lspconfigname = "ts_ls",
         },
         {
           filetypes = { "text", "markdown" },
@@ -270,7 +269,6 @@ require("lazy").setup({
       for _, lc in ipairs(languageconfigs) do
         applyLanguageConfig(lc)
       end
-
       vim.api.nvim_create_autocmd("LspAttach", {
         callback = function(args)
           local nmap = function(keys, fn, desc)

@@ -40,6 +40,8 @@
 
   home.packages = [
     (pkgs.writeShellApplication {
+      # `fcitx5-mozc-ut` is just `fcitx5-mozc.override { mozc = mozc-ut }`.
+      # (https://github.com/NixOS/nixpkgs/blob/main/pkgs/by-name/fc/fcitx5-mozc-ut/package.nix)
       name = "mozc-config";
       text = "${pkgs.mozc-ut}/lib/mozc/mozc_tool --mode=config_dialog";
     })

@@ -64,27 +64,30 @@ let
 in
 let
   lsps = with pkgs; [
-    nixd
-    lua-language-server
-    gopls
-    rust-analyzer
     bash-language-server
+    clang-tools
+    gopls
     haskell-language-server
     lean4
+    lua-language-server
+    nixd
+    rust-analyzer
     typescript-language-server
-    clang-tools
     tinymist
   ];
   nvimTreesitter = (pkgs.vimPlugins.nvim-treesitter.withPlugins (
     nt: (with nt; [
-      nix
-      lua
-      rust
-      go
       bash
-      typescript
-      javascript
       c
+      go
+      haskell
+      javascript
+      json
+      lua
+      nix
+      rust
+      toml
+      typescript
       typst
     ]) ++ (with pkgs.tree-sitter-grammars; [
       tree-sitter-lean
