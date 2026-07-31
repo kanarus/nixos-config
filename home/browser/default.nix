@@ -17,10 +17,20 @@
         "Stories" = false;
         "SponsoredStories" = false;
         "Snippets" = false;
-        "Locked" = false;
+        "Locked" = true;
       };
-      "Bookmarks" = [];
+      "DisableProfileImport" = true;
       "NoDefaultBookmarks" = true;
+      "DisplayBookmarksToolbar" = "newtab";
+      "ManagedBookmarks" = [
+        {
+          "toplevel_name" = "Bookmarks";
+        }
+        {
+          "name" = "京大ポータル";
+          "url" = "https://student.iimc.kyoto-u.ac.jp";
+        }
+      ];
       "ExtensionSettings" = {
         "*" = {
           "installation_mode" = "blocked"; # block any other addons not listed below
