@@ -4,6 +4,6 @@
   ];
 
   home.file = {
-    "${config.xdg.configHome}/ghostty/config".source = ./config;
+    "${config.xdg.configHome}/ghostty/config.ghostty".source = ./config.ghostty;
   };
 }
