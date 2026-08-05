@@ -1,5 +1,9 @@
-{ config, ... }:
+{ pkgs, config, ... }:
 {
+  home.packages = [
+    pkgs.google-chrome
+  ];
+
   programs.firefox = {
     enable = true;
     configPath = "${config.xdg.configHome}/mozilla/firefox";
