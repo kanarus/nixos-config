@@ -105,6 +105,10 @@ vim.opt.shiftwidth = 2
 vim.opt.wrap = false
 vim.opt.linebreak = false
 
+local isLspAttachedForCurrentBuffer = function()
+  return #(vim.lsp.get_clients({ bufnr = 0 })) > 0
+end
+
 require("lazy").setup({
   {
     "saghen/blink.cmp",
@@ -114,7 +118,7 @@ require("lazy").setup({
       sources = {
         default = function()
           local sources = { "snippets" }
-          if #(vim.lsp.get_clients({ bufnr = 0 })) > 0 then
+          if isLspAttachedForCurrentBuffer() then
             table.insert(sources, "lsp")
           else
             -- annoying to some extent nowadays...
@@ -186,7 +190,10 @@ require("lazy").setup({
         lualine_a = { "mode" },
         lualine_b = { "branch", "diff", "diagnostics" },
         lualine_c = { "filename" },
-        lualine_x = { "lsp_status" },
+        lualine_x = {
+          { "filetype", cond = function() return not isLspAttachedForCurrentBuffer() end },
+          "lsp_status",
+        },
         lualine_y = { "progress" },
         lualine_z = { "location" },
       },
