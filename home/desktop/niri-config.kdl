@@ -17,22 +17,22 @@ output "DP-1" {}
 
 prefer-no-csd
 cursor {
-    hide-after-inactive-ms 500
+	hide-after-inactive-ms 500
 }
 window-rule {
-    open-fullscreen         false
-    open-maximized          false
-    open-maximized-to-edges false
-    geometry-corner-radius  12
-    clip-to-geometry        true
-    focus-ring {
-    	on
-    	width 2
-        active-color "#e2eaff"
-    }
+	open-fullscreen         false
+	open-maximized          false
+	open-maximized-to-edges false
+	geometry-corner-radius  12
+	clip-to-geometry        true
+	focus-ring {
+		on
+		width 2
+		active-color "#e2eaff"
+	}
 }
 layout {
-    center-focused-column "never"
+	center-focused-column "never"
 }
 hotkey-overlay {
 	skip-at-startup
@@ -45,14 +45,14 @@ spawn-at-startup "swayidle" "-w" "before-sleep" "bash /home/kanarus/nixos-config
 spawn-at-startup "niri" "msg" "action" "move-workspace-to-monitor-next" // does nothing if not exists
 
 binds {
-	Print            { screenshot-window; }
-	Ctrl+Print       { screenshot; }
+	Print            { screenshot; }
+	Mod+Print        { screenshot-window; }
 	Ctrl+Space       { spawn "fcitx5-remote" "-t"; }
 	Mod+Q            { close-window; }
 	Mod+Left         { focus-column-left; }
 	Mod+Right        { focus-column-right; }
-    Mod+Up           { focus-window-or-workspace-up; }
-    Mod+Down         { focus-window-or-workspace-down; }
+	Mod+Up           { focus-window-or-workspace-up; }
+	Mod+Down         { focus-window-or-workspace-down; }
 	Mod+Return       { maximize-column; }
 	Mod+T            { spawn "ghostty"; }
 	Mod+B            { spawn "firefox"; }

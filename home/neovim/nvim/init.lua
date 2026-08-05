@@ -34,6 +34,7 @@ vim.filetype.add({
   extension = {
     lean = "lean",
     typ  = "typst",
+    kdl  = "kdl",
   }
 })
 -- lsp servers for unsupported-by-default languages
@@ -70,6 +71,11 @@ local applyLanguageConfig = function(config)
     callback = function()
       if config.tabtospace ~= nil then
         vim.opt_local.expandtab = config.tabtospace
+        if not config.tabtospace then -- vim's default Tab handling:
+          vim.opt_local.tabstop = 8
+          vim.opt_local.softtabstop = 0
+          vim.opt_local.shiftwidth = 0
+        end
       end
       if config.indentwidth ~= nil then
         vim.opt_local.tabstop = config.indentwidth
@@ -264,6 +270,10 @@ require("lazy").setup({
         {
           filetypes = { "text", "markdown" },
           wrap = true,
+        },
+        {
+          filetypes = { "kdl" },
+          tabtospace = false,
         },
       }
       for _, lc in ipairs(languageconfigs) do
