@@ -19,9 +19,13 @@ vim.o.smartcase = true
 vim.o.termguicolors = true
 vim.o.hlsearch = true
 vim.o.confirm = true
+vim.o.scroll = 20
 vim.o.scrolloff = 8
 vim.o.sidescrolloff = 16
 vim.o.sidescroll = 1
+
+vim.keymap.set("n", "<PageDown>", "20j", { silent = true })
+vim.keymap.set("n", "<PageUp>",   "20k", { silent = true })
 
 vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
   pattern = "*",
@@ -125,11 +129,11 @@ require("lazy").setup({
       },
       keymap = {
         preset = "none",
-        ["<Down>"]  = { "select_next", "fallback" },
-	      ["<Up>"]    = { "select_prev", "fallback" },
-	      ["<CR>"]    = { "accept", "fallback" },
-	      ["<C-Down>"]   = { "scroll_documentation_down", "fallback" },
-	      ["<C-Up>"] = { "scroll_documentation_up", "fallback" },
+        ["<Down>"]   = { "select_next", "fallback" },
+	      ["<Up>"]     = { "select_prev", "fallback" },
+	      ["<CR>"]     = { "accept", "fallback" },
+	      ["<C-Down>"] = { "scroll_documentation_down", "fallback" },
+	      ["<C-Up>"]   = { "scroll_documentation_up", "fallback" },
       },
       completion = {
         documentation = {
