@@ -212,7 +212,7 @@ require("lazy").setup({
         },
         lualine_x = {
           "diff",
-          { "diagnostics" },
+          "diagnostics",
           { "lsp_status", separator = { left = " " } },
           { "filetype", cond = function() return not lspIsAttachedForCurrentBuffer() end },
         },
