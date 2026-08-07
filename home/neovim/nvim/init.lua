@@ -51,6 +51,8 @@ vim.lsp.config("tinymist", {
   filetypes = { "typst" },
 })
 
+local LanguageConfigAugroup = vim.api.nvim_create_augroup("LanguageConfig", { clear = true })
+
 ---@class LanguageConfig
 ---@field filetypes string[]|nil
 ---@field lspconfigname string|nil
@@ -58,11 +60,9 @@ vim.lsp.config("tinymist", {
 ---@field indentwidth integer|nil
 ---@field wrap boolean|nil
 
-local LanguageconfigAugroup = vim.api.nvim_create_augroup("LanguageConfig", { clear = true })
-
 ---@param config LanguageConfig
 --- NOTE: at least one of `filetypes` or `lspconfigname` MUST be non-nil.
-local applyLanguageConfig = function(config)
+local function applyLanguageConfig(config)
   if (not config.filetypes) and (not config.lspconfigname) then
     return
   end
@@ -70,7 +70,7 @@ local applyLanguageConfig = function(config)
     vim.lsp.enable(config.lspconfigname)
   end
   vim.api.nvim_create_autocmd("FileType", {
-    group = LanguageconfigAugroup,
+    group = LanguageConfigAugroup,
     pattern = config.filetypes or vim.lsp.config[config.lspconfigname].filetypes,
     callback = function()
       if config.tabtospace ~= nil then
@@ -105,8 +105,13 @@ vim.opt.shiftwidth = 2
 vim.opt.wrap = false
 vim.opt.linebreak = false
 
-local isLspAttachedForCurrentBuffer = function()
+local function lspIsAttachedForCurrentBuffer()
   return #(vim.lsp.get_clients({ bufnr = 0 })) > 0
+end
+
+---@return string|nil
+local function getFilePathOfCurrentBuffer()
+  return vim.fn.expand("%")
 end
 
 require("lazy").setup({
@@ -118,7 +123,7 @@ require("lazy").setup({
       sources = {
         default = function()
           local sources = { "snippets" }
-          if isLspAttachedForCurrentBuffer() then
+          if lspIsAttachedForCurrentBuffer() then
             table.insert(sources, "lsp")
           else
             -- annoying to some extent nowadays...
@@ -188,14 +193,31 @@ require("lazy").setup({
       },
       sections = {
         lualine_a = { "mode" },
-        lualine_b = { "branch", "diff", "diagnostics" },
-        lualine_c = { "filename" },
+        lualine_b = { "branch" },
+        lualine_c = {
+          function()
+            local file_relative_path_or_oil_scheme_directory_absolute_path = vim.fn.expand("%")
+            local cwd_absolute_path = vim.fn.getcwd()
+            local directory_relative_path_if_oil, is_oil = string.gsub(
+              file_relative_path_or_oil_scheme_directory_absolute_path,
+              "oil://"..string.gsub(cwd_absolute_path, "%-", "%%-"),
+              "."
+            )
+            if is_oil == 1 then
+              return directory_relative_path_if_oil
+            else
+              return "./"..file_relative_path_or_oil_scheme_directory_absolute_path
+            end
+          end,
+        },
         lualine_x = {
-          { "filetype", cond = function() return not isLspAttachedForCurrentBuffer() end },
-          "lsp_status",
+          "diff",
+          { "diagnostics" },
+          { "lsp_status", separator = { left = " " } },
+          { "filetype", cond = function() return not lspIsAttachedForCurrentBuffer() end },
         },
         lualine_y = { "progress" },
-        lualine_z = { "location" },
+        lualine_z = {},
       },
     }
   },
