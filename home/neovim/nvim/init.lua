@@ -289,14 +289,16 @@ require("lazy").setup({
             -- * For a file buffer in nvim's CWD,
             --   this is the relative path of it from the cwd,
             --   e.g. `file.ext`, `dir/file.ext`
-            local percent = vim.fn.expand("%")
-            if string_startswith(percent, "oil://") then
-              local directory_abspath_slash = string_trimstart_ifmatch(percent, "oil://")
+            --   But occasionally (I don't know the condition) the absolute path is set.
+            --   e.g. `/home/username/dir/file.ext`
+            local p = vim.fn.expand("%")
+            if string_startswith(p, "oil://") then
+              local directory_abspath_slash = string_trimstart_ifmatch(p, "oil://")
               return string_replace(directory_abspath_slash, vim.fn.getcwd(), ".")
-            elseif string_startswith(percent, "/") then
-              return percent
+            elseif string_startswith(p, "/") then
+              return string_replace(p, vim.fn.getcwd(), ".")
             else
-              return "./" .. percent
+              return "./" .. p
             end
           end,
         },
