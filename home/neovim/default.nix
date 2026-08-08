@@ -72,7 +72,7 @@ let
     lua-language-server
     nixd
     rust-analyzer
-    typescript-language-server
+    vtsls
     tinymist
   ];
   nvimTreesitter = (pkgs.vimPlugins.nvim-treesitter.withPlugins (

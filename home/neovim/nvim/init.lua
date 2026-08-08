@@ -59,6 +59,7 @@ local LanguageConfigAugroup = vim.api.nvim_create_augroup("LanguageConfig", { cl
 ---@class LanguageConfig
 ---@field filetypes string[]|nil
 ---@field lspconfigname string|nil
+---@field lspconfigsettings table|nil
 ---@field tabtospace boolean|nil
 ---@field indentwidth integer|nil
 ---@field wrap boolean|nil
@@ -70,6 +71,11 @@ local function applyLanguageConfig(config)
     return
   end
   if config.lspconfigname ~= nil then
+    if config.lspconfigsettings ~= nil then
+      vim.lsp.config(config.lspconfigname, {
+        settings = config.lspconfigsettings,
+      })
+    end
     vim.lsp.enable(config.lspconfigname)
   end
   vim.api.nvim_create_autocmd("FileType", {
@@ -138,18 +144,19 @@ end
 require("lazy").setup({
   {
     "saghen/blink.cmp",
+    event = { "InsertEnter", "CmdlineEnter" },
     dependencies = { "L3MON4D3/LuaSnip" },
-    opts_extend = { "sources.default" },
     opts = {
       sources = {
         default = function()
-          local sources = { "snippets" }
+          local sources = {}
           if lspIsAttachedForCurrentBuffer() then
+            vim.lsp.config("*", {
+              capabilities = require("blink.cmp").get_lsp_capabilities(),
+            })
             table.insert(sources, "lsp")
-          else
-            -- annoying to some extent nowadays...
-            -- table.insert(sources, "buffer")
           end
+          table.insert(sources, "snippets")
           return sources
    	    end,
       },
@@ -179,8 +186,43 @@ require("lazy").setup({
     },
   },
   {
+    "L3MON4D3/LuaSnip",
+    event = { "InsertEnter", "CmdlineEnter" },
+    config = function()
+      vim.api.nvim_create_autocmd("FileType", {
+        group = vim.api.nvim_create_augroup("LeanAbbreviations", { clear = true }),
+        pattern = { "lean" },
+        once = true,
+        callback = function()
+          local ls = require("luasnip")
+          ls.config.set_config({
+            enable_auto_snippets = true,
+            updateevents = "TextChanged,TextChangedI",
+          })
+
+          ---@type table<string, string>
+          LEAN_ABBREVIATIONS = {} -- replaced by nixos-configuration/home/neovim/default.nix
+
+          local snippets = {}
+          for trigger, symbol in pairs(LEAN_ABBREVIATIONS) do
+            table.insert(snippets, ls.snippet(
+              { trig = trigger, desc = symbol },
+              { ls.text_node(symbol) }
+            ))
+          end
+          ls.add_snippets("lean", snippets)
+        end
+      })
+    end
+  },
+  {
+    "windwp/nvim-autopairs",
+    event = { "InsertEnter" },
+    opts = {},
+  },
+  {
     "lewis6991/gitsigns.nvim",
-    event = "VeryLazy",
+    event = { "BufReadPost" },
     opts = {
       on_attach = function(buf)
         vim.keymap.set(
@@ -206,7 +248,7 @@ require("lazy").setup({
   },
   {
     "nvim-lualine/lualine.nvim",
-    event = "VeryLazy",
+    lazy = false,
     opts = {
       options = {
         icons_enabled = true,
@@ -251,49 +293,9 @@ require("lazy").setup({
     }
   },
   {
-    "windwp/nvim-autopairs",
-    event = "InsertEnter",
-    config = function()
-      require("nvim-autopairs").setup()
-    end
-  },
-  {
-    "L3MON4D3/LuaSnip",
-    config = function()
-      vim.api.nvim_create_autocmd("FileType", {
-        group = vim.api.nvim_create_augroup("LeanAbbreviations", { clear = true }),
-        pattern = { "lean" },
-        once = true,
-        callback = function()
-          local ls = require("luasnip")
-          ls.config.set_config({
-            enable_auto_snippets = true,
-            updateevents = "TextChanged,TextChangedI",
-          })
-
-          ---@type table<string, string>
-          LEAN_ABBREVIATIONS = {} -- replaced by nixos-configuration/home/neovim/default.nix
-
-          local snippets = {}
-          for trigger, symbol in pairs(LEAN_ABBREVIATIONS) do
-            table.insert(snippets, ls.snippet(
-              { trig = trigger, desc = symbol },
-              { ls.text_node(symbol) }
-            ))
-          end
-          ls.add_snippets("lean", snippets)
-        end
-      })
-    end
-  },
-  {
     "neovim/nvim-lspconfig",
-    dependencies = { "saghen/blink.cmp" },
     event = { "BufNewFile", "BufReadPre" },
     config = function()
-      vim.lsp.config("*", {
-        capabilities = require("blink.cmp").get_lsp_capabilities(),
-      })
       ---@type LanguageConfig[]
       local languageconfigs = {
         {
@@ -327,7 +329,14 @@ require("lazy").setup({
           lspconfigname = "tinymist",
         },
         {
-          lspconfigname = "ts_ls",
+          lspconfigname = "vtsls",
+          lspconfigsettings = {
+            javascript = {
+              suggest = {
+                names = false,
+              },
+            },
+          },
         },
         {
           filetypes = { "text", "markdown" },
@@ -360,7 +369,7 @@ require("lazy").setup({
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    lazy = false,
+    event = { "BufNewFile", "BufReadPre" },
     config = function()
       require("nvim-treesitter").setup()
       vim.api.nvim_create_autocmd("FileType", {
