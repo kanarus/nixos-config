@@ -222,7 +222,7 @@ require("lazy").setup({
   },
   {
     "lewis6991/gitsigns.nvim",
-    event = { "BufReadPost" },
+    event = { "FileReadPost" },
     opts = {
       on_attach = function(buf)
         vim.keymap.set(
@@ -294,7 +294,7 @@ require("lazy").setup({
   },
   {
     "neovim/nvim-lspconfig",
-    event = { "BufNewFile", "BufReadPre" },
+    event = { "BufNewFile", "FileReadPre" },
     config = function()
       ---@type LanguageConfig[]
       local languageconfigs = {
@@ -369,7 +369,7 @@ require("lazy").setup({
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    event = { "BufNewFile", "BufReadPre" },
+    event = { "BufNewFile", "FileReadPre" },
     config = function()
       require("nvim-treesitter").setup()
       vim.api.nvim_create_autocmd("FileType", {
@@ -381,9 +381,14 @@ require("lazy").setup({
     end,
   },
   {
+    "nvim-mini/mini.icons",
+    lazy = true,
+    opts = {},
+  },
+  {
     "stevearc/oil.nvim",
-    dependencies = { "nvim-mini/mini.icons" },
     lazy = false,
+    dependencies = { "nvim-mini/mini.icons" },
     config = function()
       require("mini.icons").setup({})
       require("oil").setup({
@@ -413,9 +418,6 @@ require("lazy").setup({
   lockfile = "", -- don't generate lazy-lock.json, leave the version control to nix
   install = {
     missing = false, -- skip auso-installing plugins on startup
-  },
-  defaults = {
-    lazy = true,
   },
   dev = {
     path = "{{pluginsDir}}", -- replaced by nixos-configuration/home/neovim/default.nix
