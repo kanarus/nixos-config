@@ -26,9 +26,9 @@ vim.o.sidescroll = 1
 
 vim.keymap.set("n", "<PageDown>", "20j", { silent = true })
 vim.keymap.set("n", "<PageUp>",   "20k", { silent = true })
-
 vim.keymap.set("n", "<C-Right>", "w", { silent = true })
 vim.keymap.set("n", "<C-Left>",  "b", { silent = true })
+vim.keymap.set("i", "<C-BS>", "<C-w>", { silent = true })
 
 vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
   pattern = "*",
