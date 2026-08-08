@@ -121,7 +121,7 @@ end
 ---@return string
 local function string_trimstart_ifmatch(str, sub)
   if string_startswith(str, sub) then
-    return string.sub(str, #sub - 1)
+    return string.sub(str, 1 + #sub)
   else
     return str
   end
