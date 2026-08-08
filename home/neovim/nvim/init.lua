@@ -54,6 +54,18 @@ vim.lsp.config("tinymist", {
   filetypes = { "typst" },
 })
 
+local NonOilBufOpenAugroup = vim.api.nvim_create_augroup("FileType", { clear = true })
+vim.api.nvim_create_autocmd("BufReadPre", {
+  callback = function(args)
+    if args.match ~= "oil" then
+      vim.api.nvim_exec_autocmd("User", {
+        pattern = "NonOilBufOpen",
+        data = {},
+      })
+    end
+  end,
+})
+
 local LanguageConfigAugroup = vim.api.nvim_create_augroup("LanguageConfig", { clear = true })
 
 ---@class LanguageConfig
@@ -222,7 +234,7 @@ require("lazy").setup({
   },
   {
     "lewis6991/gitsigns.nvim",
-    event = { "FileReadPost" },
+    event = { "User NonOilBufOpen" },
     opts = {
       on_attach = function(buf)
         vim.keymap.set(
@@ -294,7 +306,7 @@ require("lazy").setup({
   },
   {
     "neovim/nvim-lspconfig",
-    event = { "BufNewFile", "FileReadPre" },
+    event = { "BufNewFile", "User NonOilBufOpen" },
     config = function()
       ---@type LanguageConfig[]
       local languageconfigs = {
@@ -369,7 +381,7 @@ require("lazy").setup({
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    event = { "BufNewFile", "FileReadPre" },
+    event = { "BufNewFile", "User NonOilBufOpen" },
     config = function()
       require("nvim-treesitter").setup()
       vim.api.nvim_create_autocmd("FileType", {
