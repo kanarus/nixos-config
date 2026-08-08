@@ -77,18 +77,13 @@ vim.lsp.config("tinymist", {
   filetypes = { "typst" },
 })
 
-local RealBufOpenAugroup = vim.api.nvim_create_augroup("RealBufOpen", { clear = true })
-local VIRTUAL_FILETYPES = {
-  "oil",
-  "lazy",
-  "lazy_backdrop",
-}
-vim.api.nvim_create_autocmd("FileType", {
-  group = RealBufOpenAugroup,
+local NonOilBufReadPreAugroup = vim.api.nvim_create_augroup("NonOilBufReadPre", { clear = true })
+vim.api.nvim_create_autocmd("BufReadPre", {
+  group = NonOilBufReadPreAugroup,
   callback = function(args)
-    if not vim.tbl_contains(VIRTUAL_FILETYPES, args.match) then
-      vim.api.nvim_exec_autocmds("User", { pattern = "RealBufOpen" })
-      vim.api.nvim_clear_autocmds({ group = RealBufOpenAugroup })
+    if not string_startswith(args.file, "oil://") then
+      vim.api.nvim_exec_autocmds("User", { pattern = "NonOilBufReadPre" })
+      vim.api.nvim_clear_autocmds({ group = NonOilBufReadPreAugroup })
     end
   end,
 })
@@ -241,7 +236,7 @@ require("lazy").setup({
   },
   {
     "lewis6991/gitsigns.nvim",
-    event = { "User RealBufOpen" },
+    event = { "BufNewFile", "User NonOilBufReadPre" },
     opts = {
       on_attach = function(buf)
         vim.keymap.set(
@@ -315,7 +310,7 @@ require("lazy").setup({
   },
   {
     "neovim/nvim-lspconfig",
-    event = { "BufNewFile", "User RealBufOpen" },
+    event = { "BufNewFile", "User NonOilBufReadPre" },
     config = function()
       ---@type LanguageConfig[]
       local languageconfigs = {
@@ -390,7 +385,7 @@ require("lazy").setup({
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    event = { "BufNewFile", "BufReadPre" },
+    event = { "BufNewFile", "User NonOilBufReadPre" },
     config = function()
       require("nvim-treesitter").setup()
       vim.api.nvim_create_autocmd("FileType", {
