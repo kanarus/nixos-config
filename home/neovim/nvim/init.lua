@@ -390,7 +390,7 @@ require("lazy").setup({
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    event = { "BufNewFile", "User RealBufOpen" },
+    event = { "BufNewFile", "BufReadPre" },
     config = function()
       require("nvim-treesitter").setup()
       vim.api.nvim_create_autocmd("FileType", {
