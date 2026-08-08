@@ -1,3 +1,26 @@
+---@return boolean
+local function lspIsAttachedForCurrentBuffer()
+  return #(vim.lsp.get_clients({ bufnr = 0 })) > 0
+end
+
+---@param str string
+---@param sub string
+---@return boolean
+local function string_startswith(str, sub)
+  return string.sub(str, 1, #sub) == sub
+end
+
+---@param str string
+---@param sub string
+---@return string
+local function string_trimstart_ifmatch(str, sub)
+  if string_startswith(str, sub) then
+    return string.sub(str, 1 + #sub)
+  else
+    return str
+  end
+end
+
 vim.wo.number = true
 vim.wo.relativenumber = true
 vim.wo.signcolumn = "yes"
@@ -54,19 +77,25 @@ vim.lsp.config("tinymist", {
   filetypes = { "typst" },
 })
 
-local NonOilBufOpenAugroup = vim.api.nvim_create_augroup("FileType", { clear = true })
-vim.api.nvim_create_autocmd("BufReadPre", {
+local RealBufOpenAugroup = vim.api.nvim_create_augroup("RealBufOpen", { clear = true })
+local VIRTUAL_FILETYPES = {
+  "oil",
+  "lazy",
+  "lazy_backdrop",
+}
+vim.api.nvim_create_autocmd("FileType", {
+  group = RealBufOpenAugroup,
   callback = function(args)
-    if args.match ~= "oil" then
-      vim.api.nvim_exec_autocmd("User", {
-        pattern = "NonOilBufOpen",
-        data = {},
-      })
+    -- WHEN UNEXPECTED LOADING OCCURED:
+    -- local log = io.open("nvim.log", "a+")
+    -- log:write("[RealBufOpen] FileType: " .. args.match .. "\n")
+    -- log:close()
+    if not vim.tbl_contains(VIRTUAL_FILETYPES, args.match) then
+      vim.api.nvim_exec_autocmds("User", { pattern = "RealBufOpen" })
+      vim.api.nvim_clear_autocmds({ group = RealBufOpenAugroup })
     end
   end,
 })
-
-local LanguageConfigAugroup = vim.api.nvim_create_augroup("LanguageConfig", { clear = true })
 
 ---@class LanguageConfig
 ---@field filetypes string[]|nil
@@ -76,6 +105,7 @@ local LanguageConfigAugroup = vim.api.nvim_create_augroup("LanguageConfig", { cl
 ---@field indentwidth integer|nil
 ---@field wrap boolean|nil
 
+local LanguageConfigAugroup = vim.api.nvim_create_augroup("LanguageConfig", { clear = true })
 ---@param config LanguageConfig
 --- NOTE: at least one of `filetypes` or `lspconfigname` MUST be non-nil.
 local function applyLanguageConfig(config)
@@ -125,25 +155,6 @@ vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.wrap = false
 vim.opt.linebreak = false
-
----@return boolean
-local function lspIsAttachedForCurrentBuffer()
-  return #(vim.lsp.get_clients({ bufnr = 0 })) > 0
-end
-
----@return boolean
-local function string_startswith(str, sub)
-  return string.sub(str, 1, #sub) == sub
-end
-
----@return string
-local function string_trimstart_ifmatch(str, sub)
-  if string_startswith(str, sub) then
-    return string.sub(str, 1 + #sub)
-  else
-    return str
-  end
-end
 
 ---NOTE: This is a makefhist, simple implementation; buggy for complex input
 ---@return string
@@ -234,7 +245,7 @@ require("lazy").setup({
   },
   {
     "lewis6991/gitsigns.nvim",
-    event = { "User NonOilBufOpen" },
+    event = { "User RealBufOpen" },
     opts = {
       on_attach = function(buf)
         vim.keymap.set(
@@ -306,7 +317,7 @@ require("lazy").setup({
   },
   {
     "neovim/nvim-lspconfig",
-    event = { "BufNewFile", "User NonOilBufOpen" },
+    event = { "BufNewFile", "User RealBufOpen" },
     config = function()
       ---@type LanguageConfig[]
       local languageconfigs = {
@@ -381,7 +392,7 @@ require("lazy").setup({
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    event = { "BufNewFile", "User NonOilBufOpen" },
+    event = { "BufNewFile", "User RealBufOpen" },
     config = function()
       require("nvim-treesitter").setup()
       vim.api.nvim_create_autocmd("FileType", {
