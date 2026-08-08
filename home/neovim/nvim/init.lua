@@ -86,10 +86,6 @@ local VIRTUAL_FILETYPES = {
 vim.api.nvim_create_autocmd("FileType", {
   group = RealBufOpenAugroup,
   callback = function(args)
-    -- WHEN UNEXPECTED LOADING OCCURED:
-    -- local log = io.open("nvim.log", "a+")
-    -- log:write("[RealBufOpen] FileType: " .. args.match .. "\n")
-    -- log:close()
     if not vim.tbl_contains(VIRTUAL_FILETYPES, args.match) then
       vim.api.nvim_exec_autocmds("User", { pattern = "RealBufOpen" })
       vim.api.nvim_clear_autocmds({ group = RealBufOpenAugroup })
