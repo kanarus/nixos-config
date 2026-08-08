@@ -115,22 +115,23 @@ end
 
 ---@return boolean
 local function string_startswith(str, sub)
-  return string.sub(str, 1, #sub) ~= nil
+  return string.sub(str, 1, #sub) == sub
 end
 
----@return string|nil
-local function string_trimstart(str, sub)
-  if not string_startswith(str, sub) then
-    return nil
-  end
-  return string.sub(str, 1 + #sub)
-end
-
----a makefhist, simple implementation; buggy for complex input
 ---@return string
-local function string_replace(str, sub, to)
-  local escaped_sub, _ = string.gsub(sub, "%-", "%%-")
-  local replaced, _ = string.gsub(str, escaped_sub, to)
+local function string_trimstart_ifmatch(str, sub)
+  if string_startswith(str, sub) then
+    return string.sub(str, #sub - 1)
+  else
+    return str
+  end
+end
+
+---NOTE: This is a makefhist, simple implementation; buggy for complex input
+---@return string
+local function string_replace(str, from, to)
+  local escaped_from, _ = string.gsub(from, "%-", "%%-")
+  local replaced, _ = string.gsub(str, escaped_from, to)
   return replaced
 end
 
@@ -229,7 +230,7 @@ require("lazy").setup({
             --   e.g. `file.ext`, `dir/file.ext`
             local percent = vim.fn.expand("%")
             if string_startswith(percent, "oil://") then
-              local directory_abspath_slash = string_trimstart(percent, "oil://")
+              local directory_abspath_slash = string_trimstart_ifmatch(percent, "oil://")
               return string_replace(directory_abspath_slash, vim.fn.getcwd(), ".")
             elseif string_startswith(percent, "/") then
               return percent
