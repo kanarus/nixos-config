@@ -108,13 +108,30 @@ vim.opt.shiftwidth = 2
 vim.opt.wrap = false
 vim.opt.linebreak = false
 
+---@return boolean
 local function lspIsAttachedForCurrentBuffer()
   return #(vim.lsp.get_clients({ bufnr = 0 })) > 0
 end
 
+---@return boolean
+local function string_startswith(str, sub)
+  return string.sub(str, 1, #sub) ~= nil
+end
+
 ---@return string|nil
-local function getFilePathOfCurrentBuffer()
-  return vim.fn.expand("%")
+local function string_trimstart(str, sub)
+  if not string_startswith(str, sub) then
+    return nil
+  end
+  return string.sub(str, 1 + #sub)
+end
+
+---a makefhist, simple implementation; buggy for complex input
+---@return string
+local function string_replace(str, sub, to)
+  local escaped_sub, _ = string.gsub(sub, "%-", "%%-")
+  local replaced, _ = string.gsub(str, escaped_sub, to)
+  return replaced
 end
 
 require("lazy").setup({
@@ -199,17 +216,25 @@ require("lazy").setup({
         lualine_b = { "branch" },
         lualine_c = {
           function()
-            local file_relative_path_or_oil_scheme_directory_absolute_path = vim.fn.expand("%")
-            local cwd_absolute_path = vim.fn.getcwd()
-            local directory_relative_path_if_oil, is_oil = string.gsub(
-              file_relative_path_or_oil_scheme_directory_absolute_path,
-              "oil://"..string.gsub(cwd_absolute_path, "%-", "%%-"),
-              "."
-            )
-            if is_oil == 1 then
-              return directory_relative_path_if_oil
+            -- * For a oil buffer, this is `oil://` followed by
+            --   the absolute path of the directory with trailing slash,
+            --   e.g. `oil:///home/username/dir/`
+            --
+            -- * For a file buffer out of nvim's CWD,
+            --   this is the absolute path of it,
+            --   e.g. `/home/username/dir/file.ext`
+            -- 
+            -- * For a file buffer in nvim's CWD,
+            --   this is the relative path of it from the cwd,
+            --   e.g. `file.ext`, `dir/file.ext`
+            local percent = vim.fn.expand("%")
+            if string_startswith(percent, "oil://") then
+              local directory_abspath_slash = string_trimstart(percent, "oil://")
+              return string_replace(directory_abspath_slash, vim.fn.getcwd(), ".")
+            elseif string_startswith(percent, "/") then
+              return percent
             else
-              return "./"..file_relative_path_or_oil_scheme_directory_absolute_path
+              return "./" .. percent
             end
           end,
         },
