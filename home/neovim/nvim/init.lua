@@ -52,6 +52,8 @@ vim.keymap.set("n", "<PageUp>",   "20k", { silent = true })
 vim.keymap.set("n", "<C-Right>", "w", { silent = true })
 vim.keymap.set("n", "<C-Left>",  "b", { silent = true })
 vim.keymap.set("i", "<C-BS>", "<C-w>", { silent = true })
+vim.keymap.set({ "n", "i" }, "<A-Right>", "<C-w>l", { silent = true })
+vim.keymap.set({ "n", "i" }, "<A-Left>", "<C-w>h", { silent = true })
 
 vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
   pattern = "*",
