@@ -44,7 +44,7 @@
           "install_url" = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
         };
         "forbid-google-ai-followup@kanarus.dev" = {
-          "installation_mode" = "force_installed";
+          "installation_mode" = "normal_installed";
           "install_url" = "https://addons.mozilla.org/firefox/downloads/latest/forbid-google-ai-followup/latest.xpi";
         };
       };
