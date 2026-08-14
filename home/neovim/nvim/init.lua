@@ -1,6 +1,10 @@
 ---@return boolean
-local function lspIsAttachedForCurrentBuffer()
+local function lsp_is_attached_for_current_buffer()
   return #(vim.lsp.get_clients({ bufnr = 0 })) > 0
+end
+
+local function ime_turn_off()
+  os.execute("fcitx5-remote -s keyboard-us")
 end
 
 ---@param str string
@@ -19,6 +23,14 @@ local function string_trimstart_ifmatch(str, sub)
   else
     return str
   end
+end
+
+---NOTE: This is a makefhist, simple implementation; buggy for complex input
+---@return string
+local function string_replace(str, from, to)
+  local escaped_from, _ = string.gsub(from, "%-", "%%-")
+  local replaced, _ = string.gsub(str, escaped_from, to)
+  return replaced
 end
 
 vim.wo.number = true
@@ -42,10 +54,10 @@ vim.o.smartcase = true
 vim.o.termguicolors = true
 vim.o.hlsearch = true
 vim.o.confirm = true
-vim.o.scroll = 20
-vim.o.scrolloff = 8
-vim.o.sidescrolloff = 16
+vim.o.scroll = 10
+vim.o.scrolloff = 5
 vim.o.sidescroll = 1
+vim.o.sidescrolloff = 16
 
 vim.keymap.set("n", "<PageDown>", "20j", { silent = true })
 vim.keymap.set("n", "<PageUp>",   "20k", { silent = true })
@@ -54,6 +66,15 @@ vim.keymap.set("n", "<C-Left>",  "b", { silent = true })
 vim.keymap.set("i", "<C-BS>", "<C-w>", { silent = true })
 vim.keymap.set({ "n", "i" }, "<A-Right>", "<C-w>l", { silent = true })
 vim.keymap.set({ "n", "i" }, "<A-Left>", "<C-w>h", { silent = true })
+
+vim.api.nvim_create_autocmd({ "InsertLeave", "FocusGained" }, {
+  pattern = "*",
+  callback = function()
+    if vim.fn.mode() == "n" then
+      ime_turn_off()
+    end
+  end
+})
 
 vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
   pattern = "*",
@@ -149,14 +170,6 @@ vim.opt.shiftwidth = 2
 vim.opt.wrap = false
 vim.opt.linebreak = false
 
----NOTE: This is a makefhist, simple implementation; buggy for complex input
----@return string
-local function string_replace(str, from, to)
-  local escaped_from, _ = string.gsub(from, "%-", "%%-")
-  local replaced, _ = string.gsub(str, escaped_from, to)
-  return replaced
-end
-
 require("lazy").setup({
   {
     "saghen/blink.cmp",
@@ -166,7 +179,7 @@ require("lazy").setup({
       sources = {
         default = function()
           local sources = {}
-          if lspIsAttachedForCurrentBuffer() then
+          if lsp_is_attached_for_current_buffer() then
             vim.lsp.config("*", {
               capabilities = require("blink.cmp").get_lsp_capabilities(),
             })
@@ -303,7 +316,7 @@ require("lazy").setup({
           "diff",
           "diagnostics",
           { "lsp_status", separator = { left = " " } },
-          { "filetype", cond = function() return not lspIsAttachedForCurrentBuffer() end },
+          { "filetype", cond = function() return not lsp_is_attached_for_current_buffer() end },
         },
         lualine_y = { "progress" },
         lualine_z = {},
