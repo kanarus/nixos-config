@@ -59,8 +59,8 @@ vim.o.scrolloff = 5
 vim.o.sidescroll = 1
 vim.o.sidescrolloff = 16
 
-vim.keymap.set("n", "<PageDown>", "20j", { silent = true })
-vim.keymap.set("n", "<PageUp>",   "20k", { silent = true })
+vim.keymap.set("n", "<PageDown>", "10j", { silent = true })
+vim.keymap.set("n", "<PageUp>",   "10k", { silent = true })
 vim.keymap.set("n", "<C-Right>", "w", { silent = true })
 vim.keymap.set("n", "<C-Left>",  "b", { silent = true })
 vim.keymap.set("i", "<C-BS>", "<C-w>", { silent = true })
@@ -282,6 +282,23 @@ require("lazy").setup({
       options = {
         icons_enabled = true,
         globalstatus = true,
+        refresh = {
+          events = {
+            -- default events
+            "WinEnter",
+            "BufEnter",
+            "BufWritePost",
+            "SessionLoadPost",
+            "FileChangedShellPost",
+            "VimResized",
+            "FileType",
+            "CursorMoved",
+            "CursorMovedI",
+            "ModeChanged",
+            -- additional evants
+            "FocusGained",
+          },
+        },
       },
       sections = {
         lualine_a = { "mode" },
