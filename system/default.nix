@@ -75,10 +75,6 @@
     enable = true;
   };
 
-  virtualisation.docker = {
-    enable = true;
-  };
-
   programs.ssh = {
     knownHosts = {
       "github.com" = {
