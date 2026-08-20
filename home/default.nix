@@ -12,6 +12,7 @@
     ./git
     ./i18n
     ./neovim
+    ./podman
     ./util
     ./zsh
   ];
