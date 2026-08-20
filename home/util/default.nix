@@ -5,6 +5,8 @@
     zoom-us
     pavucontrol
     evince
+    podman
+    podman-compose
   ];
 
   programs.nh = {
