@@ -72,7 +72,6 @@ vim.api.nvim_create_autocmd({ "InsertLeave", "FocusGained" }, {
   callback = function()
     if vim.fn.mode() == "n" then
       ime_turn_off()
-      require("lualine").refresh() -- refresh diff view if commited by an external git command
     end
   end
 })
@@ -81,6 +80,13 @@ vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
   pattern = "*",
   nested = true,
   command = "silent! update",
+})
+
+vim.api.nvim_create_autocmd("User", {
+  pattern = "GitSignUpdate",
+  callback = function()
+    require("lualine").rehresh({ place = { "statusline" } })
+  end
 })
 
 -- extension-to-filetype mapping for unsupported-by-default languages
@@ -314,7 +320,14 @@ require("lazy").setup({
           end,
         },
         lualine_x = {
-          "diff",
+          { "diff", source = function()
+            local gsd = vim.b.gitsigns_status_dict -- cooporates with User GitSignsUpdate autocmd
+            return {
+              added = gsd and gsd.added or 0,
+              modified = gsd and gsd.changed or 0,
+              removed = gsd and gsd.removed or 0,
+            }
+          end },
           "diagnostics",
           { "lsp_status", separator = { left = " " } },
           { "filetype", cond = function() return not lsp_is_attached_for_current_buffer() end },
