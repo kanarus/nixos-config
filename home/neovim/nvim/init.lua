@@ -72,6 +72,7 @@ vim.api.nvim_create_autocmd({ "InsertLeave", "FocusGained" }, {
   callback = function()
     if vim.fn.mode() == "n" then
       ime_turn_off()
+      require("lualine").refresh() -- refresh diff view if commited by an external git command
     end
   end
 })
@@ -282,23 +283,6 @@ require("lazy").setup({
       options = {
         icons_enabled = true,
         globalstatus = true,
-        refresh = {
-          events = {
-            -- default events
-            "WinEnter",
-            "BufEnter",
-            "BufWritePost",
-            "SessionLoadPost",
-            "FileChangedShellPost",
-            "VimResized",
-            "FileType",
-            "CursorMoved",
-            "CursorMovedI",
-            "ModeChanged",
-            -- additional evants
-            "FocusGained",
-          },
-        },
       },
       sections = {
         lualine_a = { "mode" },
