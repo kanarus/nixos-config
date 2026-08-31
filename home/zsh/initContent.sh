@@ -31,11 +31,11 @@ function maybe_git_branch() {
   if [[ $git_output =~ '^fatal: ' ]]; then
     echo ''
   else
-    echo '(%F{'"$(git_status_color)"'}'"$git_output"'%F{153})'
+    echo '(%F{'"$(git_status_color)"'}'"$git_output"'%F{69})'
   fi
 }
 setopt PROMPT_SUBST
-export PS1='%F{153}[%n%F{111}@%m%F{153}:%~]$(maybe_git_branch)%f '
+export PS1='%F{69}[%n%F{111}@%m%F{69}:%~]$(maybe_git_branch)%f '
 
 # aliases
 alias la='ls -alh --group-directories-first'

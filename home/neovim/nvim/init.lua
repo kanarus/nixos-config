@@ -285,57 +285,66 @@ require("lazy").setup({
   {
     "nvim-lualine/lualine.nvim",
     lazy = false,
-    opts = {
-      options = {
-        icons_enabled = true,
-        globalstatus = true,
-      },
-      sections = {
-        lualine_a = { "mode" },
-        lualine_b = { "branch" },
-        lualine_c = {
-          function()
-            -- * For a oil buffer, this is `oil://` followed by
-            --   the absolute path of the directory with trailing slash,
-            --   e.g. `oil:///home/username/dir/`
-            --
-            -- * For a file buffer out of nvim's CWD,
-            --   this is the absolute path of it,
-            --   e.g. `/home/username/dir/file.ext`
-            -- 
-            -- * For a file buffer in nvim's CWD,
-            --   this is the relative path of it from the cwd,
-            --   e.g. `file.ext`, `dir/file.ext`
-            --   But occasionally (I don't know the condition) the absolute path is set.
-            --   e.g. `/home/username/dir/file.ext`
-            local p = vim.fn.expand("%")
-            if string_startswith(p, "oil://") then
-              local directory_abspath_slash = string_trimstart_ifmatch(p, "oil://")
-              return string_replace(directory_abspath_slash, vim.fn.getcwd(), ".")
-            elseif string_startswith(p, "/") then
-              return string_replace(p, vim.fn.getcwd(), ".")
-            else
-              return "./" .. p
-            end
-          end,
+    dependencies = { "ramokus/mellifluous.nvim" },
+    config = function()
+      local theme = require("lualine.themes.auto")
+      for _, mode in ipairs({ "normal", "insert", "replace", "visual", "command" }) do
+        theme[mode].b.bg = "#e9e9e9"
+        theme[mode].c.bg = "#f2f2f2"
+      end
+      require("lualine").setup({
+        options = {
+          theme = theme,
+          icons_enabled = true,
+          globalstatus = true,
         },
-        lualine_x = {
-          { "diff", source = function()
-            local gsd = vim.b.gitsigns_status_dict -- cooporates with User GitSignsUpdate autocmd
-            return {
-              added = gsd and gsd.added or 0,
-              modified = gsd and gsd.changed or 0,
-              removed = gsd and gsd.removed or 0,
-            }
-          end },
-          "diagnostics",
-          { "lsp_status", separator = { left = " " } },
-          { "filetype", cond = function() return not lsp_is_attached_for_current_buffer() end },
+        sections = {
+          lualine_a = { "mode" },
+          lualine_b = { "branch" },
+          lualine_c = {
+            function()
+              -- * For a oil buffer, this is `oil://` followed by
+              --   the absolute path of the directory with trailing slash,
+              --   e.g. `oil:///home/username/dir/`
+              --
+              -- * For a file buffer out of nvim's CWD,
+              --   this is the absolute path of it,
+              --   e.g. `/home/username/dir/file.ext`
+              -- 
+              -- * For a file buffer in nvim's CWD,
+              --   this is the relative path of it from the cwd,
+              --   e.g. `file.ext`, `dir/file.ext`
+              --   But occasionally (I don't know the condition) the absolute path is set.
+              --   e.g. `/home/username/dir/file.ext`
+              local p = vim.fn.expand("%")
+              if string_startswith(p, "oil://") then
+                local directory_abspath_slash = string_trimstart_ifmatch(p, "oil://")
+                return string_replace(directory_abspath_slash, vim.fn.getcwd(), ".")
+              elseif string_startswith(p, "/") then
+                return string_replace(p, vim.fn.getcwd(), ".")
+              else
+                return "./" .. p
+              end
+            end,
+          },
+          lualine_x = {
+            { "diff", source = function()
+              local gsd = vim.b.gitsigns_status_dict -- cooporates with User GitSignsUpdate autocmd
+              return {
+                added = gsd and gsd.added or 0,
+                modified = gsd and gsd.changed or 0,
+                removed = gsd and gsd.removed or 0,
+              }
+            end },
+            "diagnostics",
+            { "lsp_status", separator = { left = " " } },
+            { "filetype", cond = function() return not lsp_is_attached_for_current_buffer() end },
+          },
+          lualine_y = { "progress" },
+          lualine_z = {},
         },
-        lualine_y = { "progress" },
-        lualine_z = {},
-      },
-    }
+      })
+    end
   },
   {
     "neovim/nvim-lspconfig",
@@ -452,7 +461,10 @@ require("lazy").setup({
   {
     "ramokus/mellifluous.nvim",
     lazy = false,
-    init = function() vim.cmd("colorscheme mellifluous") end,
+    init = function()
+      vim.cmd("colorscheme mellifluous")
+      vim.opt.background = "light"
+    end,
     opts = {
       styles = {
         comments = { italic = false },
