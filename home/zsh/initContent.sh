@@ -17,12 +17,6 @@ bindkey "^E" end-of-line
 bindkey "^[OA" history-beginning-search-backward
 bindkey "^[OB" history-beginning-search-forward
 
-function self_insert_with_log() {
-  echo "KEYS='$KEYS'" >> ~/debug2.log
-  zle .self-insert
-}
-zle -N self-insert self_insert_with_log
-
 # prompt style
 function git_status_color() {
   git_status_output=$(git status --short)

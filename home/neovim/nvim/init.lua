@@ -85,7 +85,7 @@ vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
 vim.api.nvim_create_autocmd("User", {
   pattern = "GitSignUpdate",
   callback = function()
-    require("lualine").rehresh({ place = { "statusline" } })
+    require("lualine").refresh({ place = { "statusline" } })
   end
 })
 
