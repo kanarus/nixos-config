@@ -35,7 +35,7 @@ function maybe_git_branch() {
   fi
 }
 setopt PROMPT_SUBST
-export PS1='%F{69}[%n%F{62}@%m%F{69}:%~]$(maybe_git_branch)%f '
+export PS1='%F{69}[%n%F{63}@%m%F{69}:%~]$(maybe_git_branch)%f '
 
 # aliases
 alias la='ls -alh --group-directories-first'
