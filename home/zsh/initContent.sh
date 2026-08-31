@@ -21,9 +21,9 @@ bindkey "^[OB" history-beginning-search-forward
 function git_status_color() {
   git_status_output=$(git status --short)
   if [ -z "$git_status_output" ]; then
-    echo '157'
+    echo '119'
   else
-    echo '197'
+    echo '204'
   fi
 }
 function maybe_git_branch() {
@@ -35,7 +35,7 @@ function maybe_git_branch() {
   fi
 }
 setopt PROMPT_SUBST
-export PS1='%F{69}[%n%F{111}@%m%F{69}:%~]$(maybe_git_branch)%f '
+export PS1='%F{69}[%n%F{104}@%m%F{69}:%~]$(maybe_git_branch)%f '
 
 # aliases
 alias la='ls -alh --group-directories-first'
