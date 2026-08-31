@@ -21,7 +21,7 @@ bindkey "^[OB" history-beginning-search-forward
 function git_status_color() {
   git_status_output=$(git status --short)
   if [ -z "$git_status_output" ]; then
-    echo '119'
+    echo '112'
   else
     echo '204'
   fi
